@@ -13,4 +13,8 @@
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NLPC_EPS_server.DAL\NLPC_EPS_server.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
