@@ -11,23 +11,23 @@ using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetAllBenefitProcess
 {
-    public class GetCompanyQueryHandler : IRequestHandler<GetCompanyQuery, List<CompanyDTO>>
+    public class GetBenefitProcessQueryHandler : IRequestHandler<GetBenefitProcessQuery, List<BenefitProcessDTO>>
     {
         private readonly IMapper _mapper;
         private readonly IBenefitProcessRepository _benefitProcessRepository;
-        private readonly IAppLogger<GetCompanyQueryHandler> _logger;
+        private readonly IAppLogger<GetBenefitProcessQueryHandler> _logger;
 
-        public GetCompanyQueryHandler(
+        public GetBenefitProcessQueryHandler(
             IMapper mapper,
             IBenefitProcessRepository benefitProcessRepository,
-            IAppLogger<GetCompanyQueryHandler> logger
+            IAppLogger<GetBenefitProcessQueryHandler> logger
         )
         {
             this._mapper = mapper;
             this._benefitProcessRepository = benefitProcessRepository;
             this._logger = logger;
         }
-        public async Task<List<CompanyDTO>> Handle(GetCompanyQuery request, CancellationToken cancellationToken)
+        public async Task<List<BenefitProcessDTO>> Handle(GetBenefitProcessQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
             var benefitProcesses = await _benefitProcessRepository.GetAll();
@@ -38,7 +38,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetAllBenefi
             }
 
             // 2. Convert data objects to DTO object
-            var data = _mapper.Map<List<CompanyDTO>>(benefitProcesses);
+            var data = _mapper.Map<List<BenefitProcessDTO>>(benefitProcesses);
             _logger.LogInformation("Benefit Processes were retrieved successfully", nameof(benefitProcesses));
 
             // 3. Return list of DTO Object
