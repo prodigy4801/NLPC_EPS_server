@@ -1,0 +1,48 @@
+﻿using AutoMapper;
+using MediatR;
+using NLPC_EPS_server.Application.Contracts.Logging;
+using NLPC_EPS_server.Application.Contracts.Persistence;
+using NLPC_EPS_server.Application.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetAllBenefitProcess
+{
+    public class GetCompanyQueryHandler : IRequestHandler<GetCompanyQuery, List<CompanyDTO>>
+    {
+        private readonly IMapper _mapper;
+        private readonly IBenefitProcessRepository _benefitProcessRepository;
+        private readonly IAppLogger<GetCompanyQueryHandler> _logger;
+
+        public GetCompanyQueryHandler(
+            IMapper mapper,
+            IBenefitProcessRepository benefitProcessRepository,
+            IAppLogger<GetCompanyQueryHandler> logger
+        )
+        {
+            this._mapper = mapper;
+            this._benefitProcessRepository = benefitProcessRepository;
+            this._logger = logger;
+        }
+        public async Task<List<CompanyDTO>> Handle(GetCompanyQuery request, CancellationToken cancellationToken)
+        {
+            // 1. Query the Database
+            var benefitProcesses = await _benefitProcessRepository.GetAll();
+            if (benefitProcesses == null || benefitProcesses.Count == 0)
+            {
+                _logger.LogInformation("Get All Benefit Processes contains no information.", nameof(benefitProcesses));
+                throw new NotFoundExceptions(nameof(benefitProcesses), "getAlBenefitProcesses");
+            }
+
+            // 2. Convert data objects to DTO object
+            var data = _mapper.Map<List<CompanyDTO>>(benefitProcesses);
+            _logger.LogInformation("Benefit Processes were retrieved successfully", nameof(benefitProcesses));
+
+            // 3. Return list of DTO Object
+            return data;
+        }
+    }
+}
