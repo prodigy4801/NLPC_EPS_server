@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NLPC_EPS_server.Application\NLPC_EPS_server.Application.csproj" />
+  </ItemGroup>
+
 </Project>
