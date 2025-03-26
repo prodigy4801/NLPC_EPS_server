@@ -9,6 +9,6 @@ namespace NLPC_EPS_server.DAL.Common
     public class BaseEntity
     {
         public DateTime DateCreated { get; set; }
-        public DateTime ModifiedOn { get; set; }
+        public DateTime DateModified { get; set; }
     }
 }

@@ -12,6 +12,8 @@ namespace NLPC_EPS_server.DAL
         public string Name { get; set; }
         public string Code { get; set; }
         public int CountryId { get; set; }
+
         public Country Country { get; set; }
+        public virtual ICollection<Company> Companies { get; set; }
     }
 }
