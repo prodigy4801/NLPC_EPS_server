@@ -2,7 +2,7 @@
 
 namespace NLPC_EPS_server.Application.Contracts.Persistence
 {
-    public interface IMemberBenefitRequestRepository : IRepository<MemberBenefitRequest>, IEditableRepository<MemberBenefitRequest>
+    public interface IMemberBenefitRequestRepository : IRepository<BenefitRequest>, IEditableRepository<BenefitRequest>
     {
     }
 }

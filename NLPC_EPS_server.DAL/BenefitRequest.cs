@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.DAL
 {
-    public class MemberBenefitRequest : BaseEntity
+    public class BenefitRequest : BaseEntity
     {
         public Guid Id { get; set; }
         public Guid MemberProfileId { get; set; }

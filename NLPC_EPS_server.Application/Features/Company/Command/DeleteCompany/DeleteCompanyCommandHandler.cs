@@ -4,14 +4,14 @@ using NLPC_EPS_server.Application.Exceptions;
 
 namespace NLPC_EPS_server.Application.Features.Company.Command.DeleteCompany
 {
-    public class DeleteCompanyCommandHandler : IRequestHandler<UpdateCompanyCommand, Unit>
+    public class DeleteCompanyCommandHandler : IRequestHandler<DeleteCompanyCommand, Unit>
     {
         private readonly ICompanyRepository _companyRepository;
 
         public DeleteCompanyCommandHandler(ICompanyRepository companyRepository) =>
             this._companyRepository = companyRepository;
 
-        public async Task<Unit> Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
         {
             // 1. Retireve  domain entity object
             var companyToDelete = await _companyRepository.Get(request.Id);

@@ -9,6 +9,10 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.UpdateCompany
 
         public UpdateCompanyCommandValidator(ICompanyRepository companyRepository)
         {
+            RuleFor(p => p.Id)
+                .GreaterThan(0).WithMessage("{PropertyName} must be greater than 0.")
+                .MustAsync(CompanyMustExist).WithMessage("{PropertyName} does not exist.");
+
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required")
                 .NotNull().WithMessage("{PropertyName} cannot be null or empty");

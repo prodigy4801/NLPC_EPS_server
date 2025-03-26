@@ -18,15 +18,15 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.CreateCompany
                 .NotNull().WithMessage("{PropertyName} cannot be null or empty");
 
             RuleFor(p => p)
-            .MustAsync(CompanyNameUnique).WithMessage("Company already exist");
+                .MustAsync(CompanyNameUnique).WithMessage("Company already exist");
+
 
             this._companyRepository = companyRepository;
         }
 
         private async Task<bool> CompanyNameUnique(CreateCompanyCommand command, CancellationToken token)
         {
-            var result = await _companyRepository.Exist(command.Name);
-            return !result;
+            return !await _companyRepository.Exist(command.Name);
         }
     }
 }

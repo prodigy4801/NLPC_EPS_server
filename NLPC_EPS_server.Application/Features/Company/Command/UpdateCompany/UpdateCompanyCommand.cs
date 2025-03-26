@@ -7,7 +7,7 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.UpdateCompany
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
-        public int? CountryId { get; set; }
+        public int CountryId { get; set; }
         public Guid? StateId { get; set; }
     }
 }

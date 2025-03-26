@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLPC_EPS_server.DAL.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.DAL
 {
-    public class EmployeeProfile
+    public class EmployeeProfile : BaseEntity
     {
         public int Id { get; set; }
         public int CompanyId { get; set; }
@@ -17,6 +18,7 @@ namespace NLPC_EPS_server.DAL
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpiration { get; set; }
         public bool DeleteStatus { get; set; }
+        public DateTime? DateDeleted { get; set; }
 
         public Company Company { get; set; }
         public virtual ICollection<MemberProfile> MemberProfiles { get; set; }

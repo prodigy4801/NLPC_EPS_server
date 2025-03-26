@@ -5,9 +5,9 @@ using NLPC_EPS_server.DAL;
 
 namespace NLPC_EPS_server.Application.MappingProfiles
 {
-    internal class BenefitProcessProfile : Profile
+    public class BenefitProcessProfileMapper : Profile
     {
-        public BenefitProcessProfile()
+        public BenefitProcessProfileMapper()
         {
             CreateMap<BenefitProcess, BenefitProcessDTO>();
             CreateMap<BenefitProcess, BenefitProcessDetailsDTO>();
