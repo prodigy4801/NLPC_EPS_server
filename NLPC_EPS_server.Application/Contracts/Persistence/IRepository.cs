@@ -9,6 +9,7 @@ namespace NLPC_EPS_server.Application.Contracts.Persistence
         //Task<T?> Get<T>(string id, Expression<Func<TEntity, T>> selector);
         //Task<T?> Get<T>(Guid id, Expression<Func<TEntity, T>> selector);
         Task<bool> Exist(string id);
+        Task<bool> Exist(Guid id);
         Task<bool> Exist(int id);
         Task<IReadOnlyList<TEntity>> GetAll();
         //IQueryable<T> GetAll<T>(Expression<Func<TEntity, T>> selector);

@@ -10,7 +10,7 @@ namespace NLPC_EPS_server.DAL
     public class MemberContribution : BaseEntity
     {
         public Guid Id { get; set; }
-        public Guid MemberId { get; set; }
+        public Guid MemberProfileId { get; set; }
         public int EmployeeProfileId { get; set; }
         public int ContributionTypeId { get; set; }
         public string? Description { get; set; }
