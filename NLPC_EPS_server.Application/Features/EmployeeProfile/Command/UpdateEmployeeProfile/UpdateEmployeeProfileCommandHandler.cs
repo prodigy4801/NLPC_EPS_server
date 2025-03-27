@@ -47,7 +47,7 @@ namespace NLPC_EPS_server.Application.Features.EmployeeProfile.Command.UpdateEmp
             employeeProfileToUpdate.DeleteStatus = false;
 
             // 3. Add to database
-            await _employeeProfileRepository.Update(employeeProfileToUpdate);
+            await _employeeProfileRepository.UpdateAsync(employeeProfileToUpdate);
             // 
             // 4. return record id
             return Unit.Value;

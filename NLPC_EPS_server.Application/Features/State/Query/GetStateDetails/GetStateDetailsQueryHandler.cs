@@ -31,7 +31,7 @@ namespace NLPC_EPS_server.Application.Features.State.Query.GetStateDetails
         public async Task<StateDetailsDTO> Handle(GetStateDetailsQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var stateInfo = await _stateRepository.Get(request.Id);
+            var stateInfo = await _stateRepository.GetByIDAsync(request.Id);
             if (stateInfo == null)
             {
                 _logger.LogInformation("Get State Details contains no information.", nameof(stateInfo));

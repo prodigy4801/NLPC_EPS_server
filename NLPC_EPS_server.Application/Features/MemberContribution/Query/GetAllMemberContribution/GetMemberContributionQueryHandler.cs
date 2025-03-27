@@ -31,7 +31,7 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Query.GetAllMe
         public async Task<List<MemberContributionDTO>> Handle(GetMemberContributionQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var memberContribution = await _memberContributionRepository.GetAll();
+            var memberContribution = await _memberContributionRepository.GetAsync();
             if (memberContribution == null || memberContribution.Count == 0)
             {
                 _logger.LogInformation("Get All Member Contributions contains no information.", nameof(memberContribution));

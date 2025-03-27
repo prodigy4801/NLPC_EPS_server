@@ -37,7 +37,7 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.UpdateCompany
             var CompanyToUpdate = _mapper.Map<DAL.Company>(request);
 
             // 3. Add to database
-            await _companyRepository.Update(CompanyToUpdate);
+            await _companyRepository.UpdateAsync(CompanyToUpdate);
             // 
             // 4. return record id
             return Unit.Value;

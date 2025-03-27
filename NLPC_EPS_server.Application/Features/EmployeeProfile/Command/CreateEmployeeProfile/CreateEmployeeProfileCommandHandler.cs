@@ -29,7 +29,7 @@ namespace NLPC_EPS_server.Application.Features.EmployeeProfile.Command.CreateEmp
             var employeeProfileToCreate = _mapper.Map<DAL.EmployeeProfile>(request);
 
             // 3. Add to database
-            await _employeeProfileRepository.Insert(employeeProfileToCreate);
+            await _employeeProfileRepository.CreateAsync(employeeProfileToCreate);
             // 
             // 4. return record id
             return employeeProfileToCreate.Id;

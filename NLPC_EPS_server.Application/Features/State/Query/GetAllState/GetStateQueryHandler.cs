@@ -25,7 +25,7 @@ namespace NLPC_EPS_server.Application.Features.State.Query.GetAllState
         public async Task<List<StateDTO>> Handle(GetStateQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var states = await _stateRepository.GetAll();
+            var states = await _stateRepository.GetAsync();
             if (states == null || states.Count == 0)
             {
                 _logger.LogInformation("Get All States contains no information.", nameof(states));

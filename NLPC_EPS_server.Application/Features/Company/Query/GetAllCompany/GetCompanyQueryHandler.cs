@@ -25,7 +25,7 @@ namespace NLPC_EPS_server.Application.Features.Company.Query.GetAllCompany
         public async Task<List<CompanyDTO>> Handle(GetCompanyQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var companies = await _companyRepository.GetAll();
+            var companies = await _companyRepository.GetAsync();
             if (companies == null || companies.Count == 0)
             {
                 _logger.LogInformation("Get All Company contains no information.", nameof(companies));

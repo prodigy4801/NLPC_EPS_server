@@ -20,51 +20,28 @@ namespace NLPC_EPS_server.Persistence.Repository
             _context = context;
         }
 
-        public async Task<TEntity?> Get(int id)
+        public async Task<IReadOnlyList<TEntity>> GetAsync()
         {
-            var set = GetAll();
-            return await set.SingleOrDefaultAsync(x => x.Id == id);
+            return await _context.Set<TEntity>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<T?> Get<T>(int id, Expression<Func<TEntity, T>> selector)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
-            return await Query(ent => ent.Id == id).Select(selector).SingleOrDefaultAsync();
+            return await _context.Set<TEntity>()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(q => q.Id == id);
         }
 
-        public async Task<bool> Exist(int id)
+        public async Task CreateAsync(TEntity entity)
         {
-            var set = GetAll();
-            return await set.AnyAsync(x => x.Id == id);
+            await _context.AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public IQueryable<TEntity> GetAll()
+        public async Task UpdateAsync(TEntity entity)
         {
-            return _context.Set<TEntity>().AsQueryable();
-        }
-
-        public IQueryable<T> GetAll<T>(Expression<Func<TEntity, T>> selector)
-        {
-            return GetAll().Select(selector);
-        }
-
-        public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> condition)
-        {
-            return GetAll().Where(condition);
-        }
-
-        //public IQueryable<TEntity> Query(int condition)
-        //{
-        //    return GetAll().Where(condition);
-        //}
-
-        public IQueryable<T> Query<T>(Expression<Func<TEntity, bool>> condition, Expression<Func<TEntity, T>> selector)
-        {
-            return GetAll().Where(condition).Select(selector);
-        }
-
-        public IQueryable<TEntity> Query(string condition)
-        {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

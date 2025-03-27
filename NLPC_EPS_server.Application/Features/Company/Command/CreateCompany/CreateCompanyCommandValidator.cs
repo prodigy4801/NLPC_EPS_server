@@ -26,7 +26,7 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.CreateCompany
 
         private async Task<bool> CompanyNameUnique(CreateCompanyCommand command, CancellationToken token)
         {
-            return !await _companyRepository.Exist(command.Name);
+            return !await _companyRepository.ExistByName(command.Name);
         }
     }
 }

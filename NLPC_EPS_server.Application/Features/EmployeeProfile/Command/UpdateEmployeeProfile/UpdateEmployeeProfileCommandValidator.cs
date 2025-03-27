@@ -44,7 +44,7 @@ namespace NLPC_EPS_server.Application.Features.EmployeeProfile.Command.UpdateEmp
 
         private async Task<bool> EmployeeProfileNameUnique(UpdateEmployeeProfileCommand command, CancellationToken token)
         {
-            return !await _employeeProfileRepository.Exist(command.Email);
+            return !await _employeeProfileRepository.ExistByEmail(command.Email);
         }
         private async Task<bool> CompanyMustExist(int id, CancellationToken token)
         {

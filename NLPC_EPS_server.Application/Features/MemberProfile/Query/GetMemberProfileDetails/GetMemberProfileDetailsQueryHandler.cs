@@ -25,7 +25,7 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Query.GetMemberProf
         public async Task<MemberProfileDetailsDTO> Handle(GetMemberProfileDetailsQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var memberProfile = await _memberProfileRepository.Get(request.Id);
+            var memberProfile = await _memberProfileRepository.GetByIdAsync(request.Id);
             if (memberProfile == null)
             {
                 _logger.LogInformation("Get Employee Profile Details contains no information.", nameof(memberProfile));

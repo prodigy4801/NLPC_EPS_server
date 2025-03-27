@@ -14,7 +14,7 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.DeleteCompany
         public async Task<Unit> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
         {
             // 1. Retireve  domain entity object
-            var companyToDelete = await _companyRepository.Get(request.Id);
+            var companyToDelete = await _companyRepository.GetByIdAsync(request.Id);
 
             // 2. Verify that CompanyToDelete exist
             if (companyToDelete is null) throw new NotFoundExceptions(nameof(Company), request.Id);
@@ -23,7 +23,7 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.DeleteCompany
             companyToDelete.DeleteStatus = false;
             companyToDelete.DateDeleted = DateTime.UtcNow;
             companyToDelete.DateModified = DateTime.UtcNow;
-            await _companyRepository.Update(companyToDelete);
+            await _companyRepository.UpdateAsync(companyToDelete);
             // 
             // 4. return record id
             return Unit.Value;

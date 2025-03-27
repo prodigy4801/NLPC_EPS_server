@@ -30,7 +30,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetAllBenefi
         public async Task<List<BenefitProcessDTO>> Handle(GetBenefitProcessQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var benefitProcesses = await _benefitProcessRepository.GetAll();
+            var benefitProcesses = await _benefitProcessRepository.GetAsync();
             if (benefitProcesses == null || benefitProcesses.Count == 0)
             {
                 _logger.LogInformation("Get All Benefit Processes contains no information.", nameof(benefitProcesses));

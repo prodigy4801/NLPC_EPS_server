@@ -25,7 +25,7 @@ namespace NLPC_EPS_server.Application.Features.ContributionType.Query.GetAllCont
         public async Task<List<ContributionTypeDTO>> Handle(GetContributionTypeQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var contributionTypes = await _contributionTypeRepository.GetAll();
+            var contributionTypes = await _contributionTypeRepository.GetAsync();
             if (contributionTypes == null || contributionTypes.Count == 0)
             {
                 _logger.LogInformation("Get All Contribution Types contains no information.", nameof(contributionTypes));

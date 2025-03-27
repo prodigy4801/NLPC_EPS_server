@@ -44,7 +44,7 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
             var memberContributionToCreate = _mapper.Map<DAL.MemberContribution>(request);
 
             // 3. Add to database
-            await _memberContributionRepository.Insert(memberContributionToCreate);
+            await _memberContributionRepository.CreateAsync(memberContributionToCreate);
             // 
             // 4. return record id
             return memberContributionToCreate.Id;

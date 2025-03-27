@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLPC_EPS_server.DAL", "NLPC_EPS_server.DAL\NLPC_EPS_server.DAL.csproj", "{5A28048D-F706-426D-8B23-FB9FE57E409F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLPC_EPS_server.DAL", "NLPC_EPS_server.DAL\NLPC_EPS_server.DAL.csproj", "{5A28048D-F706-426D-8B23-FB9FE57E409F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLPC_EPS_server.Application", "NLPC_EPS_server.Application\NLPC_EPS_server.Application.csproj", "{07E61B58-69E4-4816-9BE6-882D68794164}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLPC_EPS_server.Application", "NLPC_EPS_server.Application\NLPC_EPS_server.Application.csproj", "{07E61B58-69E4-4816-9BE6-882D68794164}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLPC_EPS_server.Persistence", "NLPC_EPS_server.Persistence\NLPC_EPS_server.Persistence.csproj", "{6CB1143A-F811-4246-B719-AFE48178DC5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLPC_EPS_server.Persistence", "NLPC_EPS_server.Persistence\NLPC_EPS_server.Persistence.csproj", "{6CB1143A-F811-4246-B719-AFE48178DC5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLPC_EPS_server.Infrastructure", "NLPC_EPS_server.Infrastructure\NLPC_EPS_server.Infrastructure.csproj", "{90389663-659B-45DC-AA79-2D59FB80E1B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLPC_EPS_server.Infrastructure", "NLPC_EPS_server.Infrastructure\NLPC_EPS_server.Infrastructure.csproj", "{90389663-659B-45DC-AA79-2D59FB80E1B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLPC_EPS_server.API", "NLPC_EPS_server.API\NLPC_EPS_server.API.csproj", "{39608931-E4CC-4A68-9E25-E7CCBD05620D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{90389663-659B-45DC-AA79-2D59FB80E1B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90389663-659B-45DC-AA79-2D59FB80E1B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90389663-659B-45DC-AA79-2D59FB80E1B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39608931-E4CC-4A68-9E25-E7CCBD05620D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39608931-E4CC-4A68-9E25-E7CCBD05620D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39608931-E4CC-4A68-9E25-E7CCBD05620D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39608931-E4CC-4A68-9E25-E7CCBD05620D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

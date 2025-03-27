@@ -14,7 +14,7 @@ namespace NLPC_EPS_server.Application.Features.EmployeeProfile.Command.DeleteEmp
         public async Task<Unit> Handle(DeleteEmployeeProfileCommand request, CancellationToken cancellationToken)
         {
             // 1. Retireve  domain entity object
-            var employeeProfileToDelete = await _employeeProfileRepository.Get(request.Id);
+            var employeeProfileToDelete = await _employeeProfileRepository.GetByIdAsync(request.Id);
 
             // 2. Verify that EmployeeProfileToDelete exist
             if (employeeProfileToDelete is null) throw new NotFoundExceptions(nameof(EmployeeProfile), request.Id);
@@ -23,7 +23,7 @@ namespace NLPC_EPS_server.Application.Features.EmployeeProfile.Command.DeleteEmp
             employeeProfileToDelete.DeleteStatus = false;
             employeeProfileToDelete.DateDeleted = DateTime.UtcNow;
             employeeProfileToDelete.DateModified = DateTime.UtcNow;
-            await _employeeProfileRepository.Update(employeeProfileToDelete);
+            await _employeeProfileRepository.UpdateAsync(employeeProfileToDelete);
             // 
             // 4. return record id
             return Unit.Value;

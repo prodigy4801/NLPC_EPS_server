@@ -25,7 +25,7 @@ namespace NLPC_EPS_server.Application.Features.Country.Query.GetAllCountry
         public async Task<List<CountryDTO>> Handle(GetCountryQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var countries = await _countryRepository.GetAll();
+            var countries = await _countryRepository.GetAsync();
             if (countries == null || countries.Count == 0)
             {
                 _logger.LogInformation("Get All Countries contains no information.", nameof(countries));

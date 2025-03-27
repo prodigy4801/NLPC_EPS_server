@@ -31,7 +31,7 @@ namespace NLPC_EPS_server.Application.Features.EmployeeProfile.Query.GetAllEmplo
         public async Task<List<EmployeeProfileDTO>> Handle(GetEmployeeProfileQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var employees = await _employeeProfileRepository.GetAll();
+            var employees = await _employeeProfileRepository.GetAsync();
             if (employees == null || employees.Count == 0)
             {
                 _logger.LogInformation("Get All Employee Profile contains no information.", nameof(employees));

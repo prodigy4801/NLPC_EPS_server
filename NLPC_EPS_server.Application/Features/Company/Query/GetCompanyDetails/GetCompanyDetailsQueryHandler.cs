@@ -26,7 +26,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetBenefitPr
         public async Task<CompanyDetailsDTO> Handle(GetCompanyDetailsQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var company = await _companyRepository.Get(request.Id);
+            var company = await _companyRepository.GetByIdAsync(request.Id);
             if (company == null)
             {
                 _logger.LogInformation("Get Company Details contains no information.", nameof(company));

@@ -42,7 +42,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBene
             benefitRequestToCreate.BenefitProcessId = 1;
 
             // 3. Add to database
-            await _benefitRequestRepository.Insert(benefitRequestToCreate);
+            await _benefitRequestRepository.CreateAsync(benefitRequestToCreate);
             // 
             // 4. return record id
             return benefitRequestToCreate.Id;

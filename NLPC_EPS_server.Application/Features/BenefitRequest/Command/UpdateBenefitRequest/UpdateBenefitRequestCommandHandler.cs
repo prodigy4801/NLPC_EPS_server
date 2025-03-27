@@ -43,7 +43,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.UpdateBene
             var benefitRequestToUpdate = _mapper.Map<DAL.BenefitRequest>(request);
 
             // 3. Add to database
-            await _benefitRequestRepository.Update(benefitRequestToUpdate);
+            await _benefitRequestRepository.UpdateAsync(benefitRequestToUpdate);
             // 
             // 4. return record id
             return Unit.Value;

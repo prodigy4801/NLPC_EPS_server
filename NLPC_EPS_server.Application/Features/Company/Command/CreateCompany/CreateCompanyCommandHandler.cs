@@ -27,7 +27,7 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.CreateCompany
             companyToCreate.ActiveStatus = true;
 
             // 3. Add to database
-            await _companyRepository.Insert(companyToCreate);
+            await _companyRepository.CreateAsync(companyToCreate);
             // 
             // 4. return record id
             return companyToCreate.Id;

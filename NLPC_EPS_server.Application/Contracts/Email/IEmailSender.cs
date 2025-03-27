@@ -1,4 +1,5 @@
 ﻿using NLPC_EPS_server.Application.Models.Email;
+using System.Net.Mail;
 
 namespace NLPC_EPS_server.Application.Contracts.Email
 {

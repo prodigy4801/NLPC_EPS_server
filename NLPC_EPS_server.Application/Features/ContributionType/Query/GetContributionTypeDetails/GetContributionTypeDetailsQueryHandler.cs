@@ -31,7 +31,7 @@ namespace NLPC_EPS_server.Application.Features.ContributionType.Query.GetContrib
         public async Task<ContributionTypeDetailsDTO> Handle(GetContributionTypeDetailsQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var contributionType = await _contributionTypeRepository.Get(request.Id);
+            var contributionType = await _contributionTypeRepository.GetByIdAsync(request.Id);
             if (contributionType == null)
             {
                 _logger.LogInformation("Get Contribution Type Details contains no information.", nameof(contributionType));

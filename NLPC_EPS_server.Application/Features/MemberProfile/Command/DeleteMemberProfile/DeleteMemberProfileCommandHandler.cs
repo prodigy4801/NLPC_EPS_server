@@ -20,16 +20,16 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.DeleteMembe
         public async Task<Unit> Handle(DeleteMemberProfileCommand request, CancellationToken cancellationToken)
         {
             // 1. Retireve  domain entity object
-            var memberProfileToDelete = await _memberProfileRepository.Get(request.Id);
+            var memberProfileToDeactivate = await _memberProfileRepository.GetByIdAsync(request.Id);
 
             // 2. Verify that MemberProfileToDelete exist
-            if (memberProfileToDelete is null) throw new NotFoundExceptions(nameof(memberProfileToDelete), request.Id);
+            if (memberProfileToDeactivate is null) throw new NotFoundExceptions(nameof(memberProfileToDeactivate), request.Id);
 
             // 3. Update to deactivate user
-            memberProfileToDelete.DeleteStatus = false;
-            memberProfileToDelete.DateDeleted = DateTime.UtcNow;
-            memberProfileToDelete.DateModified = DateTime.UtcNow;
-            await _memberProfileRepository.Update(memberProfileToDelete);
+            memberProfileToDeactivate.DeleteStatus = false;
+            memberProfileToDeactivate.DateDeleted = DateTime.UtcNow;
+            memberProfileToDeactivate.DateModified = DateTime.UtcNow;
+            await _memberProfileRepository.UpdateAsync(memberProfileToDeactivate);
             // 
             // 4. return record id
             return Unit.Value;

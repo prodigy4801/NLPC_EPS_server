@@ -43,7 +43,7 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Update
             var MemberContributionToUpdate = _mapper.Map<DAL.MemberContribution>(request);
 
             // 3. Add to database
-            await _memberContributionRepository.Update(MemberContributionToUpdate);
+            await _memberContributionRepository.UpdateAsync(MemberContributionToUpdate);
             // 
             // 4. return record id
             return Unit.Value;

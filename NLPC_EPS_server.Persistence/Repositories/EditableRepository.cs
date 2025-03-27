@@ -6,7 +6,7 @@ using NLPC_EPS_server.Persistence.Repository;
 
 namespace NLPC_EPS_server.Persistence.Repositories
 {
-    public abstract class EditableRepository<TEntity> : GenericRepository<TEntity>, IEditableRepository<TEntity> 
+    public abstract class EditableRepository<TEntity> : GenericRepository<TEntity>
         where TEntity : BaseEntity
     {
         protected EditableRepository(EPSDatabaseContext context) : base(context){}

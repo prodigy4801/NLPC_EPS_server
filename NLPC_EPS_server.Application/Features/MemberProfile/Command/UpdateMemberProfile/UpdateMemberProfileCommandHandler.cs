@@ -56,7 +56,7 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
             memberProfileToUpdate.DeleteStatus = false;
 
             // 3. Add to database
-            await _memberProfileRepository.Update(memberProfileToUpdate);
+            await _memberProfileRepository.UpdateAsync(memberProfileToUpdate);
             // 
             // 4. return record id
             return Unit.Value;

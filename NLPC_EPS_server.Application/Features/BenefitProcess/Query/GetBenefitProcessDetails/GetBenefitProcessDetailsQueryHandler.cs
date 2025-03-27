@@ -30,7 +30,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetBenefitPr
         public async Task<BenefitProcessDetailsDTO> Handle(GetBenefitProcessDetailsQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var benefitProcess = await _benefitProcessRepository.Get(request.Id);
+            var benefitProcess = await _benefitProcessRepository.GetByIdAsync(request.Id);
             if (benefitProcess == null)
             {
                 _logger.LogInformation("Get Benefit Process Details contains no information.", nameof(benefitProcess));

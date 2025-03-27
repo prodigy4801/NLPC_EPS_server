@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NLPC_EPS_server.Application\NLPC_EPS_server.Application.csproj" />
+    <ProjectReference Include="..\NLPC_EPS_server.Infrastructure\NLPC_EPS_server.Infrastructure.csproj" />
+    <ProjectReference Include="..\NLPC_EPS_server.Persistence\NLPC_EPS_server.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

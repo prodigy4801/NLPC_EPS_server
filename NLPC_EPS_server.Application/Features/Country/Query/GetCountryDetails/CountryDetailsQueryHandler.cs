@@ -31,7 +31,7 @@ namespace NLPC_EPS_server.Application.Features.Country.Query.GetCountryDetails
         public async Task<CountryDetailsDTO> Handle(GetCountryDetailsQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var country = await _countryRepository.Get(request.Id);
+            var country = await _countryRepository.GetByIDAsync(request.Id);
             if (country == null)
             {
                 _logger.LogInformation("Get Country Details contains no information.", nameof(country));

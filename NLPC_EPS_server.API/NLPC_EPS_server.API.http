@@ -1,0 +1,6 @@
+@NLPC_EPS_server.API_HostAddress = http://localhost:5273
+
+GET {{NLPC_EPS_server.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

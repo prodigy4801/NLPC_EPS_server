@@ -60,7 +60,7 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
 
         private async Task<bool> MemberProfileNameUnique(string email, CancellationToken token)
         {
-            return !await _memberProfileRepository.Exist(email);
+            return !await _memberProfileRepository.ExistByEmail(email);
         }
 
         private async Task<bool> EmployeeProfileMustExist(int id, CancellationToken token)
