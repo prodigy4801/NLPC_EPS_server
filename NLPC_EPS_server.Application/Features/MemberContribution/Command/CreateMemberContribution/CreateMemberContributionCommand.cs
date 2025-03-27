@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.CreateMemberContribution
 {
-    public class CreateMemberContributionCommand : IRequest<Guid>
+    public class CreateMemberContributionCommand : IRequest<int>
     {
-        public Guid Id { get; set; }
-        public Guid MemberProfileId { get; set; }
+        public int Id { get; set; }
+        public int MemberProfileId { get; set; }
         public int EmployeeProfileId { get; set; }
         public int ContributionTypeId { get; set; }
         public decimal Amount { get; set; }

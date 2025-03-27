@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.State.Query.GetStateDetails
 {
-    public record GetStateDetailsQuery(int Id) : IRequest<StateDetailsDTO>;
+    public record GetStateDetailsQuery(Guid Id) : IRequest<StateDetailsDTO>;
 }

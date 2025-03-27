@@ -42,9 +42,7 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
             // 1. Validate Incoming Data
             var validator = new UpdateMemberProfileCommandValidator(
                 _memberProfileRepository, 
-                _employeeProfileRepository, 
-                _countryRepository, 
-                _stateRepository
+                _employeeProfileRepository
             );
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.Errors.Any())
@@ -54,11 +52,11 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
             }
 
             // 2. Convert to domain entity type object
-            var MemberProfileToUpdate = _mapper.Map<DAL.MemberProfile>(request);
-            MemberProfileToUpdate.DeleteStatus = false;
+            var memberProfileToUpdate = _mapper.Map<DAL.MemberProfile>(request);
+            memberProfileToUpdate.DeleteStatus = false;
 
             // 3. Add to database
-            await _MemberProfileRepository.Update(MemberProfileToUpdate);
+            await _memberProfileRepository.Update(memberProfileToUpdate);
             // 
             // 4. return record id
             return Unit.Value;

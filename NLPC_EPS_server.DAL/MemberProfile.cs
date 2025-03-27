@@ -9,7 +9,6 @@ namespace NLPC_EPS_server.DAL
 {
     public class MemberProfile : BaseEntity
     {
-        public Guid Id { get; set; }
         public int EmployeeProfileId { get; set; }
         public string FullName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;

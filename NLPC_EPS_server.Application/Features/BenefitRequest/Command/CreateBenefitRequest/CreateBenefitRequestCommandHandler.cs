@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBenefitRequest
 {
-    public class CreateBenefitRequestCommandHandler : IRequestHandler<CreateBenefitRequestCommand, Guid>
+    public class CreateBenefitRequestCommandHandler : IRequestHandler<CreateBenefitRequestCommand, int>
     {
         private readonly IMapper _mapper;
         private readonly IBenefitRequestRepository _benefitRequestRepository;
@@ -30,7 +30,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBene
             this._memberProfileRepository = memberProfileRepositor;
             this._employeeProfileRepository = employeeProfileRepository;
         }
-        public async Task<Guid> Handle(CreateBenefitRequestCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateBenefitRequestCommand request, CancellationToken cancellationToken)
         {
             // 1. Validate Incoming Data
             var validator = new CreateBenefitRequestCommandValidator(_benefitRequestRepository, _memberProfileRepository, _employeeProfileRepository);

@@ -42,7 +42,7 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
             _contributionTypeRepository = contributionTypeRepository;
         }
 
-        private async Task<bool> MemberProfileMustExist(Guid id, CancellationToken token)
+        private async Task<bool> MemberProfileMustExist(int id, CancellationToken token)
         {
             return await _memberProfileRepository.Exist(id);
         }

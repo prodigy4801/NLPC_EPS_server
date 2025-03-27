@@ -14,14 +14,10 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
     {
         private readonly IMemberProfileRepository _memberProfileRepository;
         private readonly IEmployeeProfileRepository _employeeProfileRepository;
-        private readonly ICountryRepository _countryRepository;
-        private readonly IStateRepository _stateRepository;
 
         public UpdateMemberProfileCommandValidator(
             IMemberProfileRepository memberProfileRepository,
-            IEmployeeProfileRepository employeeProfileRepository,
-            ICountryRepository countryRepository,
-            IStateRepository stateRepository
+            IEmployeeProfileRepository employeeProfileRepository
         )
         {
             RuleFor(p => p.EmployeeProfileId)
@@ -50,22 +46,14 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
                 .NotEmpty().WithMessage("{PropertyName} is required")
                 .NotNull().WithMessage("{PropertyName} cannot be null or empty");
 
-            RuleFor(p => p.CountryId)
-                .MustAsync(CountryMustExist).WithMessage("{PropertyName} does not exist.");
-
-            RuleFor(p => p.StateId)
-                .MustAsync(StateMustExist).WithMessage("{PropertyName} does not exist.");
-
             RuleFor(p => p.DateOfBirth)
                 .Must(ValidateAge).WithMessage("");
 
             _memberProfileRepository = memberProfileRepository;
             _employeeProfileRepository = employeeProfileRepository;
-            _countryRepository = countryRepository;
-            _stateRepository = stateRepository;
         }
 
-        private async Task<bool> MemberProfileMustExist(Guid id, CancellationToken token)
+        private async Task<bool> MemberProfileMustExist(int id, CancellationToken token)
         {
             return await _memberProfileRepository.Exist(id);
         }
@@ -78,16 +66,6 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
         private async Task<bool> EmployeeProfileMustExist(int id, CancellationToken token)
         {
             return await _employeeProfileRepository.Exist(id);
-        }
-
-        private async Task<bool> CountryMustExist(int id, CancellationToken token)
-        {
-            return await _countryRepository.Exist(id);
-        }
-
-        private async Task<bool> StateMustExist(Guid id, CancellationToken token)
-        {
-            return await _stateRepository.Exist(id);
         }
 
         private bool ValidateAge(DateTime dateofBirth)

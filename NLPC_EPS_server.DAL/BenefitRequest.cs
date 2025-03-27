@@ -9,8 +9,7 @@ namespace NLPC_EPS_server.DAL
 {
     public class BenefitRequest : BaseEntity
     {
-        public Guid Id { get; set; }
-        public Guid MemberProfileId { get; set; }
+        public int MemberProfileId { get; set; }
         public int EmployeeProfileId { get; set; }
         public int BenefitProcessId { get; set; }
         public string RequestDescription { get; set; } = string.Empty;

@@ -9,7 +9,7 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Query.GetMembe
 {
     public class MemberContributionDetailsDTO
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public MemberProfileDTO MemberProfile { get; set; }
         public EmployeeProfileDTO EmployeeProfile { get; set; }
         public ContributionTypeDTO ContributionType { get; set; }

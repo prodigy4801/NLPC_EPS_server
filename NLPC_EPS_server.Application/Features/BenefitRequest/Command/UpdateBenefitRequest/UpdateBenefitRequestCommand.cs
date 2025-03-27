@@ -4,7 +4,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.UpdateBene
 {
     public class UpdateBenefitRequestCommand : IRequest<Unit>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public int BenefitProcessId { get; set; }
         public string RequestDescription { get; set; } = string.Empty;
         public decimal? DispatchedAmount { get; set; }

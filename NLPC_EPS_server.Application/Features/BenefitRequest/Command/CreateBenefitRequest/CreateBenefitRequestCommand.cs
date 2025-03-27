@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBenefitRequest
 {
-    public class CreateBenefitRequestCommand : IRequest<Guid>
+    public class CreateBenefitRequestCommand : IRequest<int>
     {
-        public string MemberProfileId { get; set; } = string.Empty;
+        public int MemberProfileId { get; set; }
         public int EmployeeProfileId { get; set; }
-        public int BenefitProcessId { get; set; }
         public string RequestDescription { get; set; } = string.Empty;
         public decimal RequestedAmount { get; set; }
         public DateTime DateDispatched { get; set; }

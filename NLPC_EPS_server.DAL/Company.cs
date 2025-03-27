@@ -9,11 +9,10 @@ namespace NLPC_EPS_server.DAL
 {
     public class Company : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
         public int? CountryId { get; set; }
-        public Guid? StateId { get; set; }
+        public long StateId { get; set; }
         public bool ActiveStatus { get; set; }
         public bool DeleteStatus { get; set; }
         public DateTime? DateDeleted { get; set; }

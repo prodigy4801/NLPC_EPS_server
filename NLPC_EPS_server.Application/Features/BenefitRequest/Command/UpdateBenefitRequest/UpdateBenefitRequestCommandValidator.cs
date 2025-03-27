@@ -18,7 +18,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.UpdateBene
 
             this._benefitRequestRepository = benefitRequestRepository;
         }
-        private async Task<bool> BenefitRequestMustExist(Guid id, CancellationToken token)
+        private async Task<bool> BenefitRequestMustExist(int id, CancellationToken token)
         {
             return await _benefitRequestRepository.Exist(id);
         }

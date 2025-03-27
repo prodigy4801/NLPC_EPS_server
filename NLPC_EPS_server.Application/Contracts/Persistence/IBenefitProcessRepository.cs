@@ -2,7 +2,7 @@
 
 namespace NLPC_EPS_server.Application.Contracts.Persistence
 {
-    public interface IBenefitProcessRepository : IRepository<BenefitProcess>
+    public interface IBenefitProcessRepository : IGenericRepository<BenefitProcess>
     {
     }
 }

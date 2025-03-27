@@ -23,13 +23,14 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.CreateCompany
             if (validationResult.Errors.Any()) throw new BadRequestExceptions("Invalid Company", validationResult);
 
             // 2. Convert to domain entity type object
-            var CompanyToCreate = _mapper.Map<DAL.Company>(request);
+            var companyToCreate = _mapper.Map<DAL.Company>(request);
+            companyToCreate.ActiveStatus = true;
 
             // 3. Add to database
-            await _companyRepository.Insert(CompanyToCreate);
+            await _companyRepository.Insert(companyToCreate);
             // 
             // 4. return record id
-            return CompanyToCreate.Id;
+            return companyToCreate.Id;
         }
     }
 }

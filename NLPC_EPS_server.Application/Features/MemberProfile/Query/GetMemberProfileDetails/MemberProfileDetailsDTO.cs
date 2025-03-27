@@ -6,7 +6,7 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Query.GetMemberProf
 {
     public class MemberProfileDetailsDTO
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public EmployeeProfileDTO EmployeeProfile { get; set; }
         public string FullName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;

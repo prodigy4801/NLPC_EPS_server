@@ -36,7 +36,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBene
             _employeeProfileRepository = employeeProfileRepository;
         }
 
-        private async Task<bool> MemberProfileMustExist(string id, CancellationToken token)
+        private async Task<bool> MemberProfileMustExist(int id, CancellationToken token)
         {
             return await _memberProfileRepository.Exist(id);
         }

@@ -1,18 +1,13 @@
 ﻿using NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetAllBenefitProcess;
 using NLPC_EPS_server.Application.Features.EmployeeProfile.Query.GetAllEmployeeProfile;
-using NLPC_EPS_server.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NLPC_EPS_server.Application.Features.MemberProfile.Query.GetAllMemberProfile;
 
 namespace NLPC_EPS_server.Application.Features.BenefitRequest.Query.GetBenefitRequestDetails
 {
     public class BenefitRequestDetailsDTO
     {
-        public Guid Id { get; set; }
-        //public MemberProfileDTO MemberProfile { get; set; }
+        public int Id { get; set; }
+        public MemberProfileDTO MemberProfile { get; set; }
         public EmployeeProfileDTO EmployeeProfile { get; set; }
         public BenefitProcessDTO BenefitProcess { get; set; }
         public string RequestDescription { get; set; } = string.Empty;

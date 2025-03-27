@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.CreateMemberProfile
 {
-    public class CreateMemberProfileCommandHandler : IRequestHandler<CreateMemberProfileCommand, Guid>
+    public class CreateMemberProfileCommandHandler : IRequestHandler<CreateMemberProfileCommand, int>
     {
         private readonly IMapper _mapper;
         private readonly IMemberProfileRepository _memberProfileRepository;
@@ -30,10 +30,10 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.CreateMembe
             this._employeeProfileRepository = employeeProfileRepository;
             this._countryRepository = countryRepository;
         }
-        public async Task<Guid> Handle(CreateMemberProfileCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateMemberProfileCommand request, CancellationToken cancellationToken)
         {
             // 1. Validate Incoming Data
-            var validator = new CreateMemberProfileCommandValidator(_memberProfileRepository, _employeeProfileRepository, _countryRepository);
+            var validator = new CreateMemberProfileCommandValidator(_memberProfileRepository, _employeeProfileRepository);
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.Errors.Any()) throw new BadRequestExceptions("Invalid MemberProfile", validationResult);
 

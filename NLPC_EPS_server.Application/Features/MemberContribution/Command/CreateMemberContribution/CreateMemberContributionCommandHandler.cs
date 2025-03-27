@@ -11,29 +11,32 @@ using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.CreateMemberContribution
 {
-    public class CreateMemberContributionCommandHandler : IRequestHandler<CreateMemberContributionCommand, Guid>
+    public class CreateMemberContributionCommandHandler : IRequestHandler<CreateMemberContributionCommand, int>
     {
         private readonly IMapper _mapper;
         private readonly IMemberContributionRepository _memberContributionRepository;
         private readonly IMemberProfileRepository _memberProfileRepository;
         private readonly IEmployeeProfileRepository _employeeProfileRepository;
+        private readonly IContributionTypeRepository _contributionTypeRepository;
 
         public CreateMemberContributionCommandHandler(
             IMapper mapper,
             IMemberContributionRepository memberContributionRepository,
             IMemberProfileRepository memberProfileRepositor,
-            IEmployeeProfileRepository employeeProfileRepository
+            IEmployeeProfileRepository employeeProfileRepository,
+            IContributionTypeRepository contributionTypeRepository
         )
         {
             this._mapper = mapper;
             this._memberContributionRepository = memberContributionRepository;
             this._memberProfileRepository = memberProfileRepositor;
             this._employeeProfileRepository = employeeProfileRepository;
+            this._contributionTypeRepository = contributionTypeRepository;
         }
-        public async Task<Guid> Handle(CreateMemberContributionCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateMemberContributionCommand request, CancellationToken cancellationToken)
         {
             // 1. Validate Incoming Data
-            var validator = new CreateMemberContributionCommandValidator(_memberContributionRepository, _memberProfileRepository, _employeeProfileRepository);
+            var validator = new CreateMemberContributionCommandValidator(_memberContributionRepository, _memberProfileRepository, _employeeProfileRepository, _contributionTypeRepository);
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.Errors.Any()) throw new BadRequestExceptions("Invalid Member Contribution", validationResult);
 
@@ -44,7 +47,7 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
             await _memberContributionRepository.Insert(memberContributionToCreate);
             // 
             // 4. return record id
-            return MemberContributionToCreate.Id;
+            return memberContributionToCreate.Id;
         }
     }
 }

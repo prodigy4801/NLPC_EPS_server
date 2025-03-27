@@ -7,6 +7,6 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.CreateCompany
         public string Name { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
         public int? CountryId { get; set; }
-        public Guid? StateId { get; set; }
+        public long? StateId { get; set; }
     }
 }
