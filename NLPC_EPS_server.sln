@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2AD89F09
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLPC_EPS_server.UnitTest", "NLPC_EPS_server.UnitTest\NLPC_EPS_server.UnitTest.csproj", "{C616E654-7111-4896-A791-F677C0009172}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLPC_EPS_server.IntegrationTest", "NLPC_EPS_server.IntegrationTest\NLPC_EPS_server.IntegrationTest.csproj", "{A2EA7F9D-7CE5-4A57-8BCD-974D16F69DEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,12 +49,17 @@ Global
 		{C616E654-7111-4896-A791-F677C0009172}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C616E654-7111-4896-A791-F677C0009172}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C616E654-7111-4896-A791-F677C0009172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2EA7F9D-7CE5-4A57-8BCD-974D16F69DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2EA7F9D-7CE5-4A57-8BCD-974D16F69DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2EA7F9D-7CE5-4A57-8BCD-974D16F69DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2EA7F9D-7CE5-4A57-8BCD-974D16F69DEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C616E654-7111-4896-A791-F677C0009172} = {2AD89F09-C44E-4D3A-B0F8-BDDD848DF47B}
+		{A2EA7F9D-7CE5-4A57-8BCD-974D16F69DEA} = {2AD89F09-C44E-4D3A-B0F8-BDDD848DF47B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3F4E58BB-EBB6-42DF-82A8-9C84DF89B028}

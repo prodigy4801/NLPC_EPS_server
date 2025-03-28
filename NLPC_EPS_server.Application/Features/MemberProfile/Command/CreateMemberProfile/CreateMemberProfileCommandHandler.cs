@@ -16,19 +16,16 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.CreateMembe
         private readonly IMapper _mapper;
         private readonly IMemberProfileRepository _memberProfileRepository;
         private readonly IEmployeeProfileRepository _employeeProfileRepository;
-        private readonly ICountryRepository _countryRepository;
 
         public CreateMemberProfileCommandHandler(
             IMapper mapper, 
             IMemberProfileRepository memberProfileRepository,
-            IEmployeeProfileRepository employeeProfileRepository,
-            ICountryRepository countryRepository
+            IEmployeeProfileRepository employeeProfileRepository
         )
         {
             this._mapper = mapper;
             this._memberProfileRepository = memberProfileRepository;
             this._employeeProfileRepository = employeeProfileRepository;
-            this._countryRepository = countryRepository;
         }
         public async Task<int> Handle(CreateMemberProfileCommand request, CancellationToken cancellationToken)
         {
