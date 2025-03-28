@@ -229,9 +229,6 @@ namespace NLPC_EPS_server.Persistence.Migrations
                         .HasMaxLength(550)
                         .HasColumnType("nvarchar(550)");
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(550)
                         .HasColumnType("nvarchar(550)");
@@ -268,9 +265,6 @@ namespace NLPC_EPS_server.Persistence.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(550)
                         .HasColumnType("nvarchar(550)");
-
-                    b.Property<int?>("StateId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NLPC_EPS_server.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial_Migration : Migration
+    public partial class initial_Migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,8 +52,6 @@ namespace NLPC_EPS_server.Persistence.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(550)", maxLength: 550, nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(550)", maxLength: 550, nullable: false),
-                    CountryId = table.Column<int>(type: "int", nullable: false),
-                    StateId = table.Column<int>(type: "int", nullable: true),
                     ActiveStatus = table.Column<bool>(type: "bit", nullable: false),
                     DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
                     DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),

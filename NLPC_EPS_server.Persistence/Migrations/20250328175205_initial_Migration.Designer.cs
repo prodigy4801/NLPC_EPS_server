@@ -12,8 +12,8 @@ using NLPC_EPS_server.Persistence.DataAccess;
 namespace NLPC_EPS_server.Persistence.Migrations
 {
     [DbContext(typeof(EPSDatabaseContext))]
-    [Migration("20250328112612_Initial_Migration")]
-    partial class Initial_Migration
+    [Migration("20250328175205_initial_Migration")]
+    partial class initial_Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -232,9 +232,6 @@ namespace NLPC_EPS_server.Persistence.Migrations
                         .HasMaxLength(550)
                         .HasColumnType("nvarchar(550)");
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(550)
                         .HasColumnType("nvarchar(550)");
@@ -271,9 +268,6 @@ namespace NLPC_EPS_server.Persistence.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(550)
                         .HasColumnType("nvarchar(550)");
-
-                    b.Property<int?>("StateId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

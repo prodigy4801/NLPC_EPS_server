@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NLPC_EPS_server.Application.Contracts.Identity;
@@ -65,7 +66,7 @@ namespace NLPC_EPS_server.Identity.Services
 
         public async Task<RegistrationResponse> Register(RegistrationRequest request)
         {
-            var profile = await _userManager.FindByNameAsync(request.Email);
+            var profile = await _userManager.FindByEmailAsync(request.Email);
             if (profile is not null) throw new BadRequestExceptions($"'{request.Email} already exist.'.");
 
             if (!await IsPasswordValid(request.Password))
@@ -96,6 +97,22 @@ namespace NLPC_EPS_server.Identity.Services
 
                 throw new BadRequestExceptions($"{str}");
             }
+        }
+
+        public async Task<bool> ConfirmEmployeeEmail(string email)
+        {
+            var profile = await _userManager.FindByNameAsync(email);
+            if (profile is null) throw new BadRequestExceptions($"'{email} does not exist'.");
+
+            if (profile.IsDeleted)
+                throw new BadRequestExceptions("Employee has been deactivated previously and cannot be activated.");
+
+            profile.EmailConfirmed = true;
+            profile.DateModified = DateTime.UtcNow;
+
+            var result = await _userManager.UpdateAsync(profile);
+            if (result.Succeeded) return true;
+            return false;
         }
 
         private async Task<JwtSecurityToken> GenerateToken(AppUser user)

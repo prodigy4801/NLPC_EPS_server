@@ -12,8 +12,8 @@ using NLPC_EPS_server.Identity.DbContext;
 namespace NLPC_EPS_server.Identity.Migrations
 {
     [DbContext(typeof(EPSServerIdentityDbContext))]
-    [Migration("20250328083007_Initial_Identity_Migration")]
-    partial class Initial_Identity_Migration
+    [Migration("20250328174713_initial_Migration")]
+    partial class initial_Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,6 +184,48 @@ namespace NLPC_EPS_server.Identity.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("NLPC_EPS_server.Application.Models.Identity.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("ActiveStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(550)
+                        .HasColumnType("nvarchar(550)");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("DeleteStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Company");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ActiveStatus = true,
+                            Address = "312 Ikorodu Rd, Anthony, Lagos 105102, Lagos.",
+                            DeleteStatus = false,
+                            Name = "NLPC Pension Fund Administrators Limited"
+                        });
+                });
+
             modelBuilder.Entity("NLPC_EPS_server.Identity.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -199,6 +241,15 @@ namespace NLPC_EPS_server.Identity.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -210,6 +261,9 @@ namespace NLPC_EPS_server.Identity.Migrations
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -246,6 +300,8 @@ namespace NLPC_EPS_server.Identity.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -261,17 +317,18 @@ namespace NLPC_EPS_server.Identity.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            CompanyId = 0,
-                            ConcurrencyStamp = "f569756c-b043-4f9a-8f88-7d9080a32b7b",
+                            CompanyId = 1,
+                            ConcurrencyStamp = "5c59a05c-800d-425c-9a48-65a46f9539b3",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FullName = "System Admin",
+                            IsDeleted = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN8hVuwriSDJxmpFCWSB5NAu9xyI1HbV5cfhyxDTiAqSc+oKqiZPbicKhT8tPyNcPw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO0e2ic9PwDJxffPbnPhb7LGtBEUbxuuYHNbZEvXD2CgncHtB5Zaiak70n8MepL0Gg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "abf89280-8bfb-4587-a494-822d85934f65",
+                            SecurityStamp = "28fd5f90-0235-4d8a-a015-0df0da1b3c84",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -279,17 +336,18 @@ namespace NLPC_EPS_server.Identity.Migrations
                         {
                             Id = "9e224968-33e4-4652-b7b7-8574d048cdb9",
                             AccessFailedCount = 0,
-                            CompanyId = 0,
-                            ConcurrencyStamp = "b5c529df-b131-4d56-becf-5b19c6a30370",
+                            CompanyId = 1,
+                            ConcurrencyStamp = "94042c3f-59fc-4490-a969-1605606123cb",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FullName = "System User",
+                            IsDeleted = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBND/ScOOJAiuFfdQEJYOpaR5NqAkgBrpbzjyvW8gRjIPX0fAA1c80JmGKyehniygQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBRvlAZWv1QnJMDjOunpH7Mi4hHH1v495D7lF87Bn5kjG4A4eET6Fus8TCYk+2Ka1w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c8442872-f3db-4691-8e22-23b4f43db57d",
+                            SecurityStamp = "d8e91d26-0b7a-4832-96d2-3121263612af",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         });
@@ -344,6 +402,17 @@ namespace NLPC_EPS_server.Identity.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("NLPC_EPS_server.Identity.Models.AppUser", b =>
+                {
+                    b.HasOne("NLPC_EPS_server.Application.Models.Identity.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
                 });
 #pragma warning restore 612, 618
         }

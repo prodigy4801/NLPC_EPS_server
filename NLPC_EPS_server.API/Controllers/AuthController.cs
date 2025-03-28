@@ -7,9 +7,8 @@ using NLPC_EPS_server.Application.Models.Identity;
 
 namespace NLPC_EPS_server.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/authentication")]
     [ApiController]
-    [AllowAnonymous]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authenticationService;
@@ -19,16 +18,29 @@ namespace NLPC_EPS_server.API.Controllers
             this._authenticationService = authenticationService;
         }
 
+
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<AuthenticationResponse>> Login(AuthenticationRequest request)
         {
             return Ok(await _authenticationService.Login(request));
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
         {
             return Ok(await _authenticationService.Register(request));
+        }
+
+
+        [Authorize]
+        [HttpPut("activate/{email}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<bool>> ConfirmEmployeeAccount(string email)
+        {
+            return Ok(await _authenticationService.ConfirmEmployeeEmail(email));
         }
     }
 }

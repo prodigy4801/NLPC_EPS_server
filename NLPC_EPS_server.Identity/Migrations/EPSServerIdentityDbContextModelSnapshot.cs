@@ -238,6 +238,15 @@ namespace NLPC_EPS_server.Identity.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -249,6 +258,9 @@ namespace NLPC_EPS_server.Identity.Migrations
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -303,16 +315,17 @@ namespace NLPC_EPS_server.Identity.Migrations
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
                             CompanyId = 1,
-                            ConcurrencyStamp = "2ba58874-322c-4ddb-b632-515a27771846",
+                            ConcurrencyStamp = "5c59a05c-800d-425c-9a48-65a46f9539b3",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FullName = "System Admin",
+                            IsDeleted = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL6kPvlIXAbyblHRLKKYyIo7fP9+mHr9dnLQMDf9oJ5j4DZPYB2mfTLHP73XT5NP9g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO0e2ic9PwDJxffPbnPhb7LGtBEUbxuuYHNbZEvXD2CgncHtB5Zaiak70n8MepL0Gg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a06296c7-979f-4fbf-8a49-65aec8986c2c",
+                            SecurityStamp = "28fd5f90-0235-4d8a-a015-0df0da1b3c84",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -321,16 +334,17 @@ namespace NLPC_EPS_server.Identity.Migrations
                             Id = "9e224968-33e4-4652-b7b7-8574d048cdb9",
                             AccessFailedCount = 0,
                             CompanyId = 1,
-                            ConcurrencyStamp = "0aec8f8b-9ad2-408e-9d89-f4f7ef924dda",
+                            ConcurrencyStamp = "94042c3f-59fc-4490-a969-1605606123cb",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FullName = "System User",
+                            IsDeleted = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDuSSgkRDdNi8WlLj0L1+K3jQPkUGGZNfmvoZ2KAzXXmVvovnnl/OyFhuf8+oqcnqA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBRvlAZWv1QnJMDjOunpH7Mi4hHH1v495D7lF87Bn5kjG4A4eET6Fus8TCYk+2Ka1w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f1c947bf-6039-40fb-8208-2a8d4c867b62",
+                            SecurityStamp = "d8e91d26-0b7a-4832-96d2-3121263612af",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         });
