@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NLPC_EPS_server.DAL;
 using NLPC_EPS_server.DAL.Common;
 using System;
@@ -33,12 +34,6 @@ namespace NLPC_EPS_server.Persistence.DataAccess
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            foreach (var entry in base.ChangeTracker.Entries<BaseEntity>()
-                .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
-            {
-                entry.Entity.DateModified = DateTime.UtcNow;
-                if (entry.State == EntityState.Added) entry.Entity.DateCreated = DateTime.UtcNow;
-            }
             return base.SaveChangesAsync(cancellationToken);
         }
     }

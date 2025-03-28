@@ -34,10 +34,11 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.UpdateCompany
             }
 
             // 2. Convert to domain entity type object
-            var CompanyToUpdate = _mapper.Map<DAL.Company>(request);
+            var companyToUpdate = _mapper.Map<DAL.Company>(request);
+            companyToUpdate.DateModified = DateTime.UtcNow;
 
             // 3. Add to database
-            await _companyRepository.UpdateAsync(CompanyToUpdate);
+            await _companyRepository.UpdateAsync(companyToUpdate);
             // 
             // 4. return record id
             return Unit.Value;

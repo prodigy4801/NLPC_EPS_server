@@ -3,6 +3,12 @@ using MediatR;
 using NLPC_EPS_server.Application.Contracts.Logging;
 using NLPC_EPS_server.Application.Contracts.Persistence;
 using NLPC_EPS_server.Application.Exceptions;
+using NLPC_EPS_server.Application.Features.State.Query.GetAllState;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.State.Query.GetAllState
 {
@@ -28,13 +34,13 @@ namespace NLPC_EPS_server.Application.Features.State.Query.GetAllState
             var states = await _stateRepository.GetAsync();
             if (states == null || states.Count == 0)
             {
-                _logger.LogInformation("Get All States contains no information.", nameof(states));
-                throw new NotFoundExceptions(nameof(states), "getAlStatees");
+                _logger.LogInformation("Get All Countries contains no information.", nameof(DAL.State));
+                throw new NotFoundExceptions(nameof(DAL.State), "getAllStates");
             }
 
             // 2. Convert data objects to DTO object
             var data = _mapper.Map<List<StateDTO>>(states);
-            _logger.LogInformation("Benefit Processes were retrieved successfully", nameof(states));
+            _logger.LogInformation("Countries were retrieved successfully", nameof(DAL.State));
 
             // 3. Return list of DTO Object
             return data;

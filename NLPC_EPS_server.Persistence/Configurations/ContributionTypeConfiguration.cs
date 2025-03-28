@@ -8,21 +8,26 @@ namespace NLPC_EPS_server.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<ContributionType> builder)
         {
-            builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-
-            builder.Property(x => x.Type)
-               .IsRequired(true)
-               .HasMaxLength(100);
-            builder.HasIndex(x => x.Type).IsUnique();
-
-            builder.Property(x => x.Description)
-               .IsRequired(false)
-               .HasMaxLength(550);
 
             builder.HasMany(x => x.MemberContributions)
                 .WithOne(x => x.ContributionType)
                 .HasForeignKey(x => x.ContributionTypeId);
+
+            builder.HasData(
+                new ContributionType
+                {
+                    Id = 1,
+                    Type = "Monthly Contribution",
+                    Description = "Contribution done monthly through a well organised system or organization."
+                },
+                new ContributionType
+                {
+                    Id = 2,
+                    Type = "Voluntary Contribution",
+                    Description = "Contribution made by the Member and its done at any given time."
+                }
+            );
         }
     }
 }

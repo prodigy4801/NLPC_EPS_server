@@ -40,10 +40,11 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Update
             }
 
             // 2. Convert to domain entity type object
-            var MemberContributionToUpdate = _mapper.Map<DAL.MemberContribution>(request);
+            var memberContributionToUpdate = _mapper.Map<DAL.MemberContribution>(request);
+            memberContributionToUpdate.DateModified = DateTime.UtcNow;
 
             // 3. Add to database
-            await _memberContributionRepository.UpdateAsync(MemberContributionToUpdate);
+            await _memberContributionRepository.UpdateAsync(memberContributionToUpdate);
             // 
             // 4. return record id
             return Unit.Value;

@@ -13,21 +13,7 @@ namespace NLPC_EPS_server.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Country> builder)
         {
-            builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-
-            builder.Property(x => x.Name)
-              .IsRequired(true)
-              .HasMaxLength(255);
-            builder.HasIndex(x => x.Name).IsUnique();
-
-            builder.Property(x => x.Code)
-              .IsRequired(false)
-              .HasMaxLength(20);
-
-            builder.HasMany(x => x.States)
-                .WithOne(x => x.Country)
-                .HasForeignKey(x => x.CountryId);
         }
     }
 }

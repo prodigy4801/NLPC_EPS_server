@@ -42,6 +42,7 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
 
             // 2. Convert to domain entity type object
             var memberContributionToCreate = _mapper.Map<DAL.MemberContribution>(request);
+            memberContributionToCreate.DateCreated = DateTime.UtcNow;
 
             // 3. Add to database
             await _memberContributionRepository.CreateAsync(memberContributionToCreate);

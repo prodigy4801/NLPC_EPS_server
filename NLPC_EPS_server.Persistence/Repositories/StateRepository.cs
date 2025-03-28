@@ -2,13 +2,6 @@
 using NLPC_EPS_server.Application.Contracts.Persistence;
 using NLPC_EPS_server.DAL;
 using NLPC_EPS_server.Persistence.DataAccess;
-using NLPC_EPS_server.Persistence.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Persistence.Repositories
 {
@@ -20,7 +13,7 @@ namespace NLPC_EPS_server.Persistence.Repositories
             _context = context;
         }
 
-        public async Task<bool> Exist(Guid id)
+        public async Task<bool> Exist(int id)
         {
             return await _context.States.AnyAsync(x => x.Id == id);
         }
@@ -30,7 +23,7 @@ namespace NLPC_EPS_server.Persistence.Repositories
             return await _context.States.AnyAsync(x => x.Name == name);
         }
 
-        public async Task<State> GetByIDAsync(Guid id)
+        public async Task<State> GetByIDAsync(int id)
         {
             return await _context.Set<State>().AsNoTracking().FirstOrDefaultAsync(q => q.Id == id);
         }

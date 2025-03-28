@@ -14,40 +14,19 @@ namespace NLPC_EPS_server.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<MemberProfile> builder)
         {
-            builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            builder.HasOne(x => x.EmployeeProfile)
-                .WithMany()
-                .HasForeignKey(x => x.EmployeeProfileId)
-                .IsRequired();
-
-            builder.Property(x => x.FullName)
-              .IsRequired(true)
-              .HasMaxLength(550);
-
             builder.HasIndex(x => x.Email).IsUnique();
-            builder.Property(x => x.Email)
-              .IsRequired(true)
-              .HasMaxLength(550);
-
-            builder.Property(x => x.PhoneNumber)
-              .IsRequired(false)
-              .HasMaxLength(50);
 
             builder.HasOne(x => x.Country)
                 .WithMany()
                 .HasForeignKey(x => x.CountryId)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x => x.State)
-                    .WithMany()
-                    .HasForeignKey(x => x.StateId)
-                    .IsRequired();
-
-            builder.HasMany(x => x.MemberContributions)
-                .WithOne(x => x.MemberProfile)
-                .HasForeignKey(x => x.MemberProfileId);
+                .WithMany()
+                .HasForeignKey(x => x.StateId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

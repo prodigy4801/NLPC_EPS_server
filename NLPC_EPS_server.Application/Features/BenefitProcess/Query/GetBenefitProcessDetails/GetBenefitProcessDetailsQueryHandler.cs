@@ -30,16 +30,16 @@ namespace NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetBenefitPr
         public async Task<BenefitProcessDetailsDTO> Handle(GetBenefitProcessDetailsQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var benefitProcess = await _benefitProcessRepository.GetByIdAsync(request.Id);
+            var benefitProcess = await _benefitProcessRepository.GetByIDAsync(request.Id);
             if (benefitProcess == null)
             {
-                _logger.LogInformation("Get Benefit Process Details contains no information.", nameof(benefitProcess));
-                throw new NotFoundExceptions(nameof(benefitProcess), "getBenefitProcessDetails");
+                _logger.LogInformation("Get Benefit Process Details contains no information.");
+                throw new NotFoundExceptions(nameof(DAL.BenefitProcess), "getBenefitProcessDetails");
             }
 
             // 2. Convert data objects to DTO object
             var data = _mapper.Map<BenefitProcessDetailsDTO>(benefitProcess);
-            _logger.LogInformation("Benefit Process was retrieved successfully", nameof(benefitProcess));
+            _logger.LogInformation("Benefit Process was retrieved successfully");
 
             // 3. Return list of DTO Object
             return data;

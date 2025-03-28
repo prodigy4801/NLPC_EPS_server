@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Persistence.Repository
 {
-    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
-        public EPSDatabaseContext _context { get; protected set; }
+        protected readonly EPSDatabaseContext _context;
 
         public GenericRepository(EPSDatabaseContext context)
         {

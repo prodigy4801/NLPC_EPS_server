@@ -1,3 +1,4 @@
+using NLPC_EPS_server.API.Middlewares;
 using NLPC_EPS_server.Application;
 using NLPC_EPS_server.Infrastructure;
 using NLPC_EPS_server.Persistence;
@@ -23,6 +24,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

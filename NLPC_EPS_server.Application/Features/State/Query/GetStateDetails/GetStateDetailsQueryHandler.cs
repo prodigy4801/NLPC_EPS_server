@@ -31,16 +31,16 @@ namespace NLPC_EPS_server.Application.Features.State.Query.GetStateDetails
         public async Task<StateDetailsDTO> Handle(GetStateDetailsQuery request, CancellationToken cancellationToken)
         {
             // 1. Query the Database
-            var stateInfo = await _stateRepository.GetByIDAsync(request.Id);
-            if (stateInfo == null)
+            var state = await _stateRepository.GetByIDAsync(request.Id);
+            if (state == null)
             {
-                _logger.LogInformation("Get State Details contains no information.", nameof(stateInfo));
-                throw new NotFoundExceptions(nameof(stateInfo), "getStateDetails");
+                _logger.LogInformation("Get State Details contains no information.", nameof(DAL.State));
+                throw new NotFoundExceptions(nameof(DAL.State), "getStateDetails");
             }
 
             // 2. Convert data objects to DTO object
-            var data = _mapper.Map<StateDetailsDTO>(stateInfo);
-            _logger.LogInformation("State Info was retrieved successfully", nameof(stateInfo));
+            var data = _mapper.Map<StateDetailsDTO>(state);
+            _logger.LogInformation("State was retrieved successfully", nameof(DAL.State));
 
             // 3. Return list of DTO Object
             return data;

@@ -14,24 +14,8 @@ namespace NLPC_EPS_server.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<State> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id)
-               .IsRequired()
-               .HasValueGenerator<SequentialGuidStringGenerator>();
-
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasIndex(x => x.Name).IsUnique();
-            builder.Property(x => x.Name)
-             .IsRequired(true)
-             .HasMaxLength(255);
-
-            builder.Property(x => x.Code)
-             .IsRequired(false)
-             .HasMaxLength(50);
-
-            builder.HasOne(x => x.Country)
-                .WithMany()
-                .HasForeignKey(x => x.CountryId)
-                .IsRequired();
 
             builder.HasMany(x => x.Companies)
                 .WithOne(x => x.State)

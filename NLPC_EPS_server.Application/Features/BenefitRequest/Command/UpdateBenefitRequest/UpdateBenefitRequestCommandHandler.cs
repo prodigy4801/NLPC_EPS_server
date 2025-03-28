@@ -41,6 +41,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.UpdateBene
 
             // 2. Convert to domain entity type object
             var benefitRequestToUpdate = _mapper.Map<DAL.BenefitRequest>(request);
+            benefitRequestToUpdate.DateModified = DateTime.UtcNow;
 
             // 3. Add to database
             await _benefitRequestRepository.UpdateAsync(benefitRequestToUpdate);

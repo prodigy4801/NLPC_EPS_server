@@ -3,6 +3,6 @@
     public class BenefitProcessDTO
     {
         public int Id { get; set; }
-        public string ProcessName { get; set; } = string.Empty;
+        public string ProcessCode { get; set; } = string.Empty;
     }
 }

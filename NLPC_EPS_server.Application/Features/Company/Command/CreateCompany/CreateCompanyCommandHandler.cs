@@ -25,6 +25,7 @@ namespace NLPC_EPS_server.Application.Features.Company.Command.CreateCompany
             // 2. Convert to domain entity type object
             var companyToCreate = _mapper.Map<DAL.Company>(request);
             companyToCreate.ActiveStatus = true;
+            companyToCreate.DateCreated = DateTime.UtcNow;
 
             // 3. Add to database
             await _companyRepository.CreateAsync(companyToCreate);

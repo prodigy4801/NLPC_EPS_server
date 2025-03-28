@@ -45,6 +45,7 @@ namespace NLPC_EPS_server.Application.Features.EmployeeProfile.Command.UpdateEmp
             // 2. Convert to domain entity type object
             var employeeProfileToUpdate = _mapper.Map<DAL.EmployeeProfile>(request);
             employeeProfileToUpdate.DeleteStatus = false;
+            employeeProfileToUpdate.DateModified = DateTime.UtcNow;
 
             // 3. Add to database
             await _employeeProfileRepository.UpdateAsync(employeeProfileToUpdate);

@@ -9,6 +9,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.UpdateBene
 
         public UpdateBenefitRequestCommandValidator(IBenefitRequestRepository benefitRequestRepository)
         {
+            //Include(new )
             RuleFor(p => p.EmployeeComment)
                 .NotEmpty().WithMessage("{PropertyName} is required")
                 .NotNull().WithMessage("{PropertyName} cannot be null or empty");

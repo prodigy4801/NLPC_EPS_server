@@ -40,6 +40,7 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBene
             // 2. Convert to domain entity type object
             var benefitRequestToCreate = _mapper.Map<DAL.BenefitRequest>(request);
             benefitRequestToCreate.BenefitProcessId = 1;
+            benefitRequestToCreate.DateCreated = DateTime.UtcNow;
 
             // 3. Add to database
             await _benefitRequestRepository.CreateAsync(benefitRequestToCreate);

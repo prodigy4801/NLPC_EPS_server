@@ -27,6 +27,7 @@ namespace NLPC_EPS_server.Application.Features.EmployeeProfile.Command.CreateEmp
 
             // 2. Convert to domain entity type object
             var employeeProfileToCreate = _mapper.Map<DAL.EmployeeProfile>(request);
+            employeeProfileToCreate.DateCreated = DateTime.UtcNow;
 
             // 3. Add to database
             await _employeeProfileRepository.CreateAsync(employeeProfileToCreate);

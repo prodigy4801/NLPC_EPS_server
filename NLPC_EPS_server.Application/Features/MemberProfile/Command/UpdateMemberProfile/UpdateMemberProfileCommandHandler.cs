@@ -17,25 +17,19 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
         private readonly IMapper _mapper;
         private readonly IMemberProfileRepository _memberProfileRepository;
         private readonly IEmployeeProfileRepository _employeeProfileRepository;
-        private readonly ICountryRepository _countryRepository;
-        private readonly IStateRepository _stateRepository;
         private readonly IAppLogger<UpdateMemberProfileCommandHandler> _logger;
 
         public UpdateMemberProfileCommandHandler(
             IMapper mapper,
             IMemberProfileRepository memberProfileRepository,
             IAppLogger<UpdateMemberProfileCommandHandler> logger,
-            IEmployeeProfileRepository employeeProfileRepository,
-            ICountryRepository countryRepository,
-            IStateRepository stateRepository
+            IEmployeeProfileRepository employeeProfileRepository
         )
         {
             this._mapper = mapper;
             this._logger = logger;
             _memberProfileRepository = memberProfileRepository;
             _employeeProfileRepository = employeeProfileRepository;
-            _countryRepository = countryRepository;
-            _stateRepository = stateRepository;
         }
         public async Task<Unit> Handle(UpdateMemberProfileCommand request, CancellationToken cancellationToken)
         {
@@ -54,6 +48,7 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
             // 2. Convert to domain entity type object
             var memberProfileToUpdate = _mapper.Map<DAL.MemberProfile>(request);
             memberProfileToUpdate.DeleteStatus = false;
+            memberProfileToUpdate.DateModified = DateTime.UtcNow;
 
             // 3. Add to database
             await _memberProfileRepository.UpdateAsync(memberProfileToUpdate);

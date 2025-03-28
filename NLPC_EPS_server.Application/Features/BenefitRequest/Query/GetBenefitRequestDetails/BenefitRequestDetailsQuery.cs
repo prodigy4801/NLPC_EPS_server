@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using NLPC_EPS_server.Application.Features.EmployeeProfile.Query.GetEmployeeProfileDetails;
+//using NLPC_EPS_server.Application.Features.EmployeeProfile.Query.GetEmployeeProfileDetails;
 using System;
 using System.Collections.Generic;
 using System.Linq;

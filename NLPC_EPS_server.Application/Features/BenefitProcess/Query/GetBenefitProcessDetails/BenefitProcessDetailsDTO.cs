@@ -3,7 +3,7 @@
     public class BenefitProcessDetailsDTO
     {
         public int Id { get; set; }
-        public string ProcessName { get; set; } = string.Empty;
+        public string ProcessCode { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
     }
 }
