@@ -17,6 +17,7 @@ namespace NLPC_EPS_server.DAL
         public string FullName { get; set; } = string.Empty;
         [Required]
         [StringLength(550)]
+        [EmailAddress]
         public string Email { get; set; } = string.Empty;
         [StringLength(255)]
         public string? PasswordHashed { get; set; } = string.Empty;
