@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBenefitRequest;
 using NLPC_EPS_server.Application.Features.BenefitRequest.Command.UpdateBenefitRequest;
@@ -11,6 +12,7 @@ namespace NLPC_EPS_server.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BenefitRequestController : ControllerBase
     {
         private readonly IMediator _mediator;

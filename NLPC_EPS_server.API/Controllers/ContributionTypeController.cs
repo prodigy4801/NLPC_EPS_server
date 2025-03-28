@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NLPC_EPS_server.Application.Features.ContributionType.Query.GetAllContributionType;
 using NLPC_EPS_server.Application.Features.ContributionType.Query.GetContributionTypeDetails;
@@ -9,6 +10,7 @@ namespace NLPC_EPS_server.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ContributionTypeController : ControllerBase
     {
         private readonly IMediator _mediator;

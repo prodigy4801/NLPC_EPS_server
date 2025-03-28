@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NLPC_EPS_server.Application.Contracts.Identity;
 using NLPC_EPS_server.Application.Models.Identity;
 
@@ -8,6 +9,7 @@ namespace NLPC_EPS_server.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authenticationService;

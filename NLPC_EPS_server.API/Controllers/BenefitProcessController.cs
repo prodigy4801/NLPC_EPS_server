@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetAllBenefitProcess;
 using NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetBenefitProcessDetails;
@@ -7,8 +8,12 @@ using NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetBenefitProces
 
 namespace NLPC_EPS_server.API.Controllers
 {
+    /// <summary>
+    /// Class to implement the Member Control Business logic
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BenefitProcessController : ControllerBase
     {
         private readonly IMediator _mediator;
