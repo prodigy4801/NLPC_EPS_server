@@ -33,8 +33,8 @@ namespace NLPC_EPS_server.Application.Features.BenefitProcess.Query.GetBenefitPr
             var benefitProcess = await _benefitProcessRepository.GetByIDAsync(request.Id);
             if (benefitProcess == null)
             {
-                _logger.LogInformation("Get Benefit Process Details contains no information.");
-                throw new NotFoundExceptions(nameof(DAL.BenefitProcess), "getBenefitProcessDetails");
+                _logger.LogWarning("Get Benefit Process Details contains no information.");
+                throw new NotFoundExceptions(nameof(DAL.BenefitProcess), request.Id);
             }
 
             // 2. Convert data objects to DTO object

@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLPC_EPS_server.Persistence
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLPC_EPS_server.Infrastructure", "NLPC_EPS_server.Infrastructure\NLPC_EPS_server.Infrastructure.csproj", "{90389663-659B-45DC-AA79-2D59FB80E1B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLPC_EPS_server.API", "NLPC_EPS_server.API\NLPC_EPS_server.API.csproj", "{39608931-E4CC-4A68-9E25-E7CCBD05620D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLPC_EPS_server.API", "NLPC_EPS_server.API\NLPC_EPS_server.API.csproj", "{39608931-E4CC-4A68-9E25-E7CCBD05620D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2AD89F09-C44E-4D3A-B0F8-BDDD848DF47B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLPC_EPS_server.UnitTest", "NLPC_EPS_server.UnitTest\NLPC_EPS_server.UnitTest.csproj", "{C616E654-7111-4896-A791-F677C0009172}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +43,16 @@ Global
 		{39608931-E4CC-4A68-9E25-E7CCBD05620D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39608931-E4CC-4A68-9E25-E7CCBD05620D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39608931-E4CC-4A68-9E25-E7CCBD05620D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C616E654-7111-4896-A791-F677C0009172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C616E654-7111-4896-A791-F677C0009172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C616E654-7111-4896-A791-F677C0009172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C616E654-7111-4896-A791-F677C0009172}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C616E654-7111-4896-A791-F677C0009172} = {2AD89F09-C44E-4D3A-B0F8-BDDD848DF47B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3F4E58BB-EBB6-42DF-82A8-9C84DF89B028}

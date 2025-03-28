@@ -62,8 +62,7 @@ namespace NLPC_EPS_server.API.Middlewares
                         Title = ex.Message,
                         Status = (int)statusCode,
                         Type = nameof(HttpStatusCode.InternalServerError),
-                        Detail = ex.StackTrace,
-                         Errors = 
+                        Detail = ex.StackTrace
                     };
                     break;
             }
