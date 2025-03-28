@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using NLPC_EPS_server.Identity.Models;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,12 @@ namespace NLPC_EPS_server.Identity.DbContext
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(EPSServerIdentityDbContext).Assembly);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(warnings =>
+                   warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
         }
     }
 }

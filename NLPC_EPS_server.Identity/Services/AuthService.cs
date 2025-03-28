@@ -75,7 +75,8 @@ namespace NLPC_EPS_server.Identity.Services
             {
                 Email = request.Email,
                 FullName = request.FullName,
-                CompanyId = request.CompanyId
+                CompanyId = request.CompanyId,
+                UserName = request.Email
             };
 
             var result = await _userManager.CreateAsync(user, request.Password);

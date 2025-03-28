@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NLPC_EPS_server.Identity.DbContext;
 
@@ -11,9 +12,11 @@ using NLPC_EPS_server.Identity.DbContext;
 namespace NLPC_EPS_server.Identity.Migrations
 {
     [DbContext(typeof(EPSServerIdentityDbContext))]
-    partial class EPSServerIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250328112811_Initial_Migration")]
+    partial class Initial_Migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
