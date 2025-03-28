@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NLPC_EPS_server.Application\NLPC_EPS_server.Application.csproj" />
+    <ProjectReference Include="..\NLPC_EPS_server.Identity\NLPC_EPS_server.Identity.csproj" />
     <ProjectReference Include="..\NLPC_EPS_server.Infrastructure\NLPC_EPS_server.Infrastructure.csproj" />
     <ProjectReference Include="..\NLPC_EPS_server.Persistence\NLPC_EPS_server.Persistence.csproj" />
   </ItemGroup>

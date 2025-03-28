@@ -8,6 +8,6 @@ namespace NLPC_EPS_server.Application.Models.Identity
 {
     public class RegistrationResponse
     {
-        public string EmployeeProfileId { get; set; }
+        public string EmployeeProfileEmail { get; set; }
     }
 }

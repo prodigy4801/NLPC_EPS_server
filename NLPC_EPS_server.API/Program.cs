@@ -1,5 +1,6 @@
 using NLPC_EPS_server.API.Middlewares;
 using NLPC_EPS_server.Application;
+using NLPC_EPS_server.Identity;
 using NLPC_EPS_server.Infrastructure;
 using NLPC_EPS_server.Persistence;
 
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 builder.Services.AddControllers();
 
@@ -36,6 +38,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("all");
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
