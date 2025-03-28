@@ -11,12 +11,12 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
 {
     public class CreateMemberContributionCommandValidator : AbstractValidator<CreateMemberContributionCommand>
     {
-        private readonly IMemberContributionRepository _MemberContributionRepository;
+        private readonly IMemberContributionRepository _memberContributionRepository;
         private readonly IMemberProfileRepository _memberProfileRepository;
         private readonly IContributionTypeRepository _contributionTypeRepository;
 
         public CreateMemberContributionCommandValidator(
-            IMemberContributionRepository MemberContributionRepository,
+            IMemberContributionRepository memberContributionRepository,
             IMemberProfileRepository memberProfileRepositor,
             IContributionTypeRepository contributionTypeRepository
         )
@@ -30,10 +30,16 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
             RuleFor(p => p.Amount)
                 .GreaterThan(999).WithMessage("{PropertyName} must be within a 1000 and above");
 
-
-            this._MemberContributionRepository = MemberContributionRepository;
+            this._memberContributionRepository = memberContributionRepository;
             _memberProfileRepository = memberProfileRepositor;
             _contributionTypeRepository = contributionTypeRepository;
+        }
+
+        private async Task<bool> VerifyPreviousContribution(CreateMemberContributionCommand command)
+        {
+            if (command.ContributionTypeId == 2) return true;
+
+            return !await _memberContributionRepository.IsContributionExistByMonth(DateTime.Now.Month, command.MemberProfileId);
         }
 
         private async Task<bool> MemberProfileMustExist(int id, CancellationToken token)

@@ -23,8 +23,6 @@ namespace NLPC_EPS_server.DAL
         [Required]
         [StringLength(550)]
         public string Address { get; set; } = string.Empty;
-        public int CountryId { get; set; }
-        public int? StateId { get; set; }
         public bool ActiveStatus { get; set; }
         public bool DeleteStatus { get; set; }
         public DateTime? DateDeleted { get; set; }

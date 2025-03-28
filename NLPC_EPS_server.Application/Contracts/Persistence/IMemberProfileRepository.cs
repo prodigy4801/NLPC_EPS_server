@@ -6,5 +6,8 @@ namespace NLPC_EPS_server.Application.Contracts.Persistence
     {
         Task<bool> Exist(int Id);
         Task<bool> ExistByEmail(string email);
+        Task<List<MemberProfile>> GetActive();
+        Task<MemberProfile> GetActiveById(int Id);
+        Task<bool> DeactivateMember(int Id);
     }
 }

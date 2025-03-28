@@ -37,6 +37,13 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.Errors.Any()) throw new BadRequestExceptions("Invalid Member Contribution", validationResult);
 
+            //1. Validate if contribution is Monthly and if it has previously been paid
+            if(request.ContributionTypeId == 1)
+            {
+                if(await _memberContributionRepository.IsContributionExistByMonth(DateTime.Now.Month, request.MemberProfileId))
+                    throw new BadRequestExceptions("Contribution has previously been made by this member for this current month.");
+            }
+
             // 2. Convert to domain entity type object
             var memberContributionToCreate = _mapper.Map<DAL.MemberContribution>(request);
             memberContributionToCreate.DateCreated = DateTime.UtcNow;
