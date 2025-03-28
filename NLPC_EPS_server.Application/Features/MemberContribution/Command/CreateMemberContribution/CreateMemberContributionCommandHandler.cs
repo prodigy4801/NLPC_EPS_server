@@ -16,27 +16,24 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
         private readonly IMapper _mapper;
         private readonly IMemberContributionRepository _memberContributionRepository;
         private readonly IMemberProfileRepository _memberProfileRepository;
-        private readonly IEmployeeProfileRepository _employeeProfileRepository;
         private readonly IContributionTypeRepository _contributionTypeRepository;
 
         public CreateMemberContributionCommandHandler(
             IMapper mapper,
             IMemberContributionRepository memberContributionRepository,
             IMemberProfileRepository memberProfileRepositor,
-            IEmployeeProfileRepository employeeProfileRepository,
             IContributionTypeRepository contributionTypeRepository
         )
         {
             this._mapper = mapper;
             this._memberContributionRepository = memberContributionRepository;
             this._memberProfileRepository = memberProfileRepositor;
-            this._employeeProfileRepository = employeeProfileRepository;
             this._contributionTypeRepository = contributionTypeRepository;
         }
         public async Task<int> Handle(CreateMemberContributionCommand request, CancellationToken cancellationToken)
         {
             // 1. Validate Incoming Data
-            var validator = new CreateMemberContributionCommandValidator(_memberContributionRepository, _memberProfileRepository, _employeeProfileRepository, _contributionTypeRepository);
+            var validator = new CreateMemberContributionCommandValidator(_memberContributionRepository, _memberProfileRepository, _contributionTypeRepository);
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.Errors.Any()) throw new BadRequestExceptions("Invalid Member Contribution", validationResult);
 

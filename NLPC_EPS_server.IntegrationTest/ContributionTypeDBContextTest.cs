@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NLPC_EPS_server.Application.Contracts.Identity;
 using NLPC_EPS_server.DAL;
 using NLPC_EPS_server.Persistence.DataAccess;
 using Shouldly;
@@ -13,13 +14,15 @@ namespace NLPC_EPS_server.IntegrationTest
     public class ContributionTypeDBContextTest
     {
         private EPSDatabaseContext _context;
+        private readonly IEmployeeProfileService _employeeProfileService;
 
-        public ContributionTypeDBContextTest()
+        public ContributionTypeDBContextTest(IEmployeeProfileService employeeProfileService)
         {
             var dbOptions = new DbContextOptionsBuilder<EPSDatabaseContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+            _employeeProfileService = employeeProfileService;
 
-            _context = new EPSDatabaseContext(dbOptions);
+            _context = new EPSDatabaseContext(dbOptions, _employeeProfileService);
         }
 
 

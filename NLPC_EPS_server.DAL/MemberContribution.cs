@@ -12,7 +12,6 @@ namespace NLPC_EPS_server.DAL
     public class MemberContribution : BaseEntity
     {
         public int MemberProfileId { get; set; }
-        public int EmployeeProfileId { get; set; }
         public int ContributionTypeId { get; set; }
         [StringLength(550)]
         public string? Description { get; set; }
@@ -22,8 +21,6 @@ namespace NLPC_EPS_server.DAL
 
         [ForeignKey(nameof(MemberProfileId))]
         public MemberProfile MemberProfile { get; set; }
-        [ForeignKey(nameof(EmployeeProfileId))]
-        public EmployeeProfile EmployeeProfile { get; set; }
         [ForeignKey(nameof(ContributionTypeId))]
         public ContributionType ContributionType { get; set; }
     }

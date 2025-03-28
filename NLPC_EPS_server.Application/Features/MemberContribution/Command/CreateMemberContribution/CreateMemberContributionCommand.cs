@@ -11,7 +11,6 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
     {
         public int Id { get; set; }
         public int MemberProfileId { get; set; }
-        public int EmployeeProfileId { get; set; }
         public int ContributionTypeId { get; set; }
         public decimal Amount { get; set; }
     }

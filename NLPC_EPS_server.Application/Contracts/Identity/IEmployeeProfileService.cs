@@ -1,9 +1,5 @@
-﻿using NLPC_EPS_server.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NLPC_EPS_server.Application.Models.Identity;
+using NLPC_EPS_server.DAL;
 
 namespace NLPC_EPS_server.Application.Contracts.Identity
 {

@@ -10,6 +10,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Company\**" />
+    <Compile Remove="Features\EmployeeProfile\**" />
+    <EmbeddedResource Remove="Features\Company\**" />
+    <EmbeddedResource Remove="Features\EmployeeProfile\**" />
+    <None Remove="Features\Company\**" />
+    <None Remove="Features\EmployeeProfile\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Mocks\MockCompanyRepository.cs" />
+    <Compile Remove="Mocks\MockEmployeeProfileRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Moq" Version="4.20.72" />

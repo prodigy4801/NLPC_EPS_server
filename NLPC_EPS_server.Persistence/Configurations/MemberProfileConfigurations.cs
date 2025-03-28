@@ -17,16 +17,6 @@ namespace NLPC_EPS_server.Persistence.Configurations
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
             builder.HasIndex(x => x.Email).IsUnique();
-
-            builder.HasOne(x => x.Country)
-                .WithMany()
-                .HasForeignKey(x => x.CountryId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            builder.HasOne(x => x.State)
-                .WithMany()
-                .HasForeignKey(x => x.StateId)
-                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

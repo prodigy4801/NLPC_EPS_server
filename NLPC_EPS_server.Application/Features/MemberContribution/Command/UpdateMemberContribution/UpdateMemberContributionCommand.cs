@@ -9,7 +9,7 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Update
 {
     public class UpdateMemberContributionCommand : IRequest<Unit>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string? Description { get; set; }
         public decimal Amount { get; set; }
         public DateTime ContributionDate { get; set; }

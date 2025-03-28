@@ -20,13 +20,9 @@ namespace NLPC_EPS_server.Persistence
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IBenefitProcessRepository, BenefitProcessRepository>();
             services.AddScoped<IBenefitRequestRepository, BenefitRequestRepository>();
-            services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IContributionTypeRepository, ContributionTypeRepository>();
-            services.AddScoped<ICountryRepository, CountryRepository>();
-            services.AddScoped<IEmployeeProfileRepository, EmployeeProfileRepository>();
             services.AddScoped<IMemberContributionRepository, MemberContributionRepository>();
             services.AddScoped<IMemberProfileRepository, MemberProfileRepository>();
-            services.AddScoped<IStateRepository, StateRepository>();
 
             return services;
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using NLPC_EPS_server.Application.Contracts.Identity;
 using NLPC_EPS_server.DAL;
 using NLPC_EPS_server.DAL.Common;
 using System;
@@ -13,18 +14,18 @@ namespace NLPC_EPS_server.Persistence.DataAccess
 {
     public class EPSDatabaseContext : DbContext
     {
-        public EPSDatabaseContext(DbContextOptions<EPSDatabaseContext> options) : base(options)
-        { }
+        private readonly IEmployeeProfileService _employeeProfile;
+
+        public EPSDatabaseContext(DbContextOptions<EPSDatabaseContext> options, IEmployeeProfileService employeeProfile) : base(options)
+        {
+            this._employeeProfile = employeeProfile;
+        }
 
         public DbSet<BenefitProcess> BenefitProcesses { get; set; }
         public DbSet<BenefitRequest> BenefitRequests { get; set; }
-        public DbSet<Company> Companies { get; set; }
         public DbSet<ContributionType> ContributionTypes { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<EmployeeProfile> EmployeeProfiles { get; set; }
         public DbSet<MemberContribution> MemberContributions { get; set; }
         public DbSet<MemberProfile> MemberProfiles { get; set; }
-        public DbSet<State> States { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +35,15 @@ namespace NLPC_EPS_server.Persistence.DataAccess
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
+            foreach (var entry in base.ChangeTracker.Entries<BaseEntity>()
+                .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
+            {
+                entry.Entity.ModifiedBy = _employeeProfile.EmployeeEmail;
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Entity.CreatedBy = _employeeProfile.EmployeeEmail;
+                }
+            }
             return base.SaveChangesAsync(cancellationToken);
         }
     }

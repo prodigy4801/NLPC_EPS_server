@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Company.cs" />
+    <Compile Remove="Country.cs" />
+    <Compile Remove="EmployeeProfile.cs" />
+    <Compile Remove="State.cs" />
+  </ItemGroup>
+
 </Project>

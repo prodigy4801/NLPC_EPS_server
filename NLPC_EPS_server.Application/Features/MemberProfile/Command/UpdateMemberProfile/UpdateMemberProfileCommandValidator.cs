@@ -1,27 +1,16 @@
 ﻿using FluentValidation;
 using NLPC_EPS_server.Application.Contracts.Persistence;
-using NLPC_EPS_server.Application.Features.EmployeeProfile.Command.UpdateEmployeeProfile;
-using NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMemberProfile;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMemberProfile
 {
     public class UpdateMemberProfileCommandValidator : AbstractValidator<UpdateMemberProfileCommand>
     {
         private readonly IMemberProfileRepository _memberProfileRepository;
-        private readonly IEmployeeProfileRepository _employeeProfileRepository;
 
         public UpdateMemberProfileCommandValidator(
-            IMemberProfileRepository memberProfileRepository,
-            IEmployeeProfileRepository employeeProfileRepository
+            IMemberProfileRepository memberProfileRepository
         )
         {
-            RuleFor(p => p.EmployeeProfileId)
-                .MustAsync(EmployeeProfileMustExist).WithMessage("{PropertyName} does not exist");
 
             RuleFor(p => p.FullName)
                 .NotEmpty().WithMessage("{PropertyName} is required")
@@ -50,7 +39,6 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
                 .Must(ValidateAge).WithMessage("");
 
             _memberProfileRepository = memberProfileRepository;
-            _employeeProfileRepository = employeeProfileRepository;
         }
 
         private async Task<bool> MemberProfileMustExist(int id, CancellationToken token)
@@ -61,11 +49,6 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
         private async Task<bool> MemberProfileNameUnique(string email, CancellationToken token)
         {
             return !await _memberProfileRepository.ExistByEmail(email);
-        }
-
-        private async Task<bool> EmployeeProfileMustExist(int id, CancellationToken token)
-        {
-            return await _employeeProfileRepository.Exist(id);
         }
 
         private bool ValidateAge(DateTime dateofBirth)

@@ -13,8 +13,6 @@ namespace NLPC_EPS_server.DAL
     {
         [Required]
         public int MemberProfileId { get; set; }
-        [Required]
-        public int EmployeeProfileId { get; set; }
         public int BenefitProcessId { get; set; }
         [Required]
         [StringLength(550)]
@@ -26,9 +24,6 @@ namespace NLPC_EPS_server.DAL
 
         [ForeignKey(nameof(MemberProfileId))]
         public MemberProfile MemberProfile { get; set; }
-
-        [ForeignKey(nameof(EmployeeProfileId))]
-        public EmployeeProfile EmployeeProfile { get; set; }
 
         [ForeignKey(nameof(BenefitProcessId))]
         public BenefitProcess BenefitProcess { get; set; }

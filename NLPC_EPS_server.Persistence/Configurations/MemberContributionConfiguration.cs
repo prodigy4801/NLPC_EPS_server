@@ -18,6 +18,11 @@ namespace NLPC_EPS_server.Persistence.Configurations
                 .WithMany()
                 .HasForeignKey(x => x.MemberProfileId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(x => x.ContributionType)
+                .WithMany()
+                .HasForeignKey(x => x.ContributionTypeId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

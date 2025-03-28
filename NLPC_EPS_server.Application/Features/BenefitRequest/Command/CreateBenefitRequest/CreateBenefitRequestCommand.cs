@@ -10,7 +10,6 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBene
     public class CreateBenefitRequestCommand : IRequest<int>
     {
         public int MemberProfileId { get; set; }
-        public int EmployeeProfileId { get; set; }
         public string RequestDescription { get; set; } = string.Empty;
         public decimal RequestedAmount { get; set; }
         public DateTime DateDispatched { get; set; }

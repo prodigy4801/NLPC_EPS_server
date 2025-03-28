@@ -22,9 +22,9 @@ namespace NLPC_EPS_server.Persistence.Configurations
                 .HasForeignKey(x => x.MemberProfileId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(x => x.EmployeeProfile)
+            builder.HasOne(x => x.BenefitProcess)
                 .WithMany()
-                .HasForeignKey(x => x.EmployeeProfileId)
+                .HasForeignKey(x => x.BenefitProcessId)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

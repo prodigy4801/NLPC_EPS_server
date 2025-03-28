@@ -1,11 +1,5 @@
 ﻿using FluentValidation;
 using NLPC_EPS_server.Application.Contracts.Persistence;
-using NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBenefitRequest;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBenefitRequest
 {
@@ -13,19 +7,14 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBene
     {
         private readonly IBenefitRequestRepository _benefitRequestRepository;
         private readonly IMemberProfileRepository _memberProfileRepository;
-        private readonly IEmployeeProfileRepository _employeeProfileRepository;
 
         public CreateBenefitRequestCommandValidator(
             IBenefitRequestRepository benefitRequestRepository,
-            IMemberProfileRepository memberProfileRepositor,
-            IEmployeeProfileRepository employeeProfileRepository
+            IMemberProfileRepository memberProfileRepositor
         )
         {
             RuleFor(p => p.MemberProfileId)
                 .MustAsync(MemberProfileMustExist).WithMessage("{PropertyName} is does not exist");
-
-            RuleFor(p => p.EmployeeProfileId)
-                .MustAsync(EmployeeProfileMustExist).WithMessage("{PropertyName} is does not exist"); ;
 
             RuleFor(p => p)
                 .MustAsync(BenefitRequestUnique).WithMessage("Benefit has been Initiated. Cannot request for benefit.");
@@ -33,17 +22,11 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBene
 
             this._benefitRequestRepository = benefitRequestRepository;
             _memberProfileRepository = memberProfileRepositor;
-            _employeeProfileRepository = employeeProfileRepository;
         }
 
         private async Task<bool> MemberProfileMustExist(int id, CancellationToken token)
         {
             return await _memberProfileRepository.Exist(id);
-        }
-
-        private async Task<bool> EmployeeProfileMustExist(int id, CancellationToken token)
-        {
-            return await _employeeProfileRepository.Exist(id);
         }
 
         private async Task<bool> BenefitRequestUnique(CreateBenefitRequestCommand command, CancellationToken token)

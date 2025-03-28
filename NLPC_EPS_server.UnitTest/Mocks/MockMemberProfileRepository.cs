@@ -28,7 +28,6 @@ namespace NLPC_EPS_server.UnitTest.Mocks
                       DeleteStatus = false,
                       DateOfBirth = DateTime.Now,
                       Email = "superman@yahoomail.com",
-                      EmployeeProfileId = 3,
                       FullName = "KKKKK YYYYYY",
                       PhoneNumber = "1234567890"
                 },

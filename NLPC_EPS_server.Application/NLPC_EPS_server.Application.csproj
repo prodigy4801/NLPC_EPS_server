@@ -7,7 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Company\**" />
+    <Compile Remove="Features\Country\**" />
+    <Compile Remove="Features\EmployeeProfile\**" />
+    <Compile Remove="Features\State\**" />
+    <EmbeddedResource Remove="Features\Company\**" />
+    <EmbeddedResource Remove="Features\Country\**" />
+    <EmbeddedResource Remove="Features\EmployeeProfile\**" />
+    <EmbeddedResource Remove="Features\State\**" />
+    <None Remove="Features\Company\**" />
+    <None Remove="Features\Country\**" />
+    <None Remove="Features\EmployeeProfile\**" />
+    <None Remove="Features\State\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Contracts\Persistence\ICompanyRepository.cs" />
+    <Compile Remove="Contracts\Persistence\ICountryRepository.cs" />
     <Compile Remove="Contracts\Persistence\IEditableRepository.cs" />
+    <Compile Remove="Contracts\Persistence\IEmployeeProfileRepository.cs" />
+    <Compile Remove="Contracts\Persistence\IStateRepository.cs" />
+    <Compile Remove="MappingProfiles\CompanyProfileMapper.cs" />
+    <Compile Remove="MappingProfiles\CountryProfileMapper.cs" />
+    <Compile Remove="MappingProfiles\EmployeeProfileMapper.cs" />
+    <Compile Remove="MappingProfiles\StateProfileMapper.cs" />
   </ItemGroup>
 
   <ItemGroup>

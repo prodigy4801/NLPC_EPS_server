@@ -13,21 +13,16 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
     {
         private readonly IMemberContributionRepository _MemberContributionRepository;
         private readonly IMemberProfileRepository _memberProfileRepository;
-        private readonly IEmployeeProfileRepository _employeeProfileRepository;
         private readonly IContributionTypeRepository _contributionTypeRepository;
 
         public CreateMemberContributionCommandValidator(
             IMemberContributionRepository MemberContributionRepository,
             IMemberProfileRepository memberProfileRepositor,
-            IEmployeeProfileRepository employeeProfileRepository,
             IContributionTypeRepository contributionTypeRepository
         )
         {
             RuleFor(p => p.MemberProfileId)
                 .MustAsync(MemberProfileMustExist).WithMessage("{PropertyName} does not exist");
-
-            RuleFor(p => p.EmployeeProfileId)
-                .MustAsync(EmployeeProfileMustExist).WithMessage("{PropertyName} does not exist");
 
             RuleFor(p => p.ContributionTypeId)
                 .MustAsync(ContributionTypeMustExist).WithMessage("{PropertyName} does not exist");
@@ -38,18 +33,12 @@ namespace NLPC_EPS_server.Application.Features.MemberContribution.Command.Create
 
             this._MemberContributionRepository = MemberContributionRepository;
             _memberProfileRepository = memberProfileRepositor;
-            _employeeProfileRepository = employeeProfileRepository;
             _contributionTypeRepository = contributionTypeRepository;
         }
 
         private async Task<bool> MemberProfileMustExist(int id, CancellationToken token)
         {
             return await _memberProfileRepository.Exist(id);
-        }
-
-        private async Task<bool> EmployeeProfileMustExist(int id, CancellationToken token)
-        {
-            return await _employeeProfileRepository.Exist(id);
         }
 
         private async Task<bool> ContributionTypeMustExist(int id, CancellationToken token)

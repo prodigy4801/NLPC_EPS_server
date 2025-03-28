@@ -16,24 +16,21 @@ namespace NLPC_EPS_server.Application.Features.BenefitRequest.Command.CreateBene
         private readonly IMapper _mapper;
         private readonly IBenefitRequestRepository _benefitRequestRepository;
         private readonly IMemberProfileRepository _memberProfileRepository;
-        private readonly IEmployeeProfileRepository _employeeProfileRepository;
 
         public CreateBenefitRequestCommandHandler(
             IMapper mapper, 
             IBenefitRequestRepository benefitRequestRepository,
-            IMemberProfileRepository memberProfileRepositor,
-            IEmployeeProfileRepository employeeProfileRepository
+            IMemberProfileRepository memberProfileRepositor
         )
         {
             this._mapper = mapper;
             this._benefitRequestRepository = benefitRequestRepository;
             this._memberProfileRepository = memberProfileRepositor;
-            this._employeeProfileRepository = employeeProfileRepository;
         }
         public async Task<int> Handle(CreateBenefitRequestCommand request, CancellationToken cancellationToken)
         {
             // 1. Validate Incoming Data
-            var validator = new CreateBenefitRequestCommandValidator(_benefitRequestRepository, _memberProfileRepository, _employeeProfileRepository);
+            var validator = new CreateBenefitRequestCommandValidator(_benefitRequestRepository, _memberProfileRepository);
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.Errors.Any()) throw new BadRequestExceptions("Invalid BenefitRequest", validationResult);
 

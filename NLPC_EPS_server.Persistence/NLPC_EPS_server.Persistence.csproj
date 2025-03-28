@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Configurations\CompanyConfiguration.cs" />
+    <Compile Remove="Configurations\CountryConfiguration.cs" />
+    <Compile Remove="Configurations\EmployeeProfileConfiguration.cs" />
+    <Compile Remove="Configurations\StateConfiguration.cs" />
+    <Compile Remove="Repositories\CompanyRepository.cs" />
+    <Compile Remove="Repositories\CountryRepository.cs" />
     <Compile Remove="Repositories\EditableRepository.cs" />
+    <Compile Remove="Repositories\EmployeeProfileRepository.cs" />
+    <Compile Remove="Repositories\StateRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>

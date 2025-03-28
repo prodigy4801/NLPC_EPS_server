@@ -25,7 +25,8 @@ namespace NLPC_EPS_server.Identity.Configuration
                      UserName = "admin@localhost.com",
                      NormalizedUserName = "ADMIN@LOCALHOST.COM",
                      PasswordHash = hasher.HashPassword(null, "P@ssword1"),
-                     EmailConfirmed = true
+                     EmailConfirmed = true,
+                     CompanyId = 1,
                  },
                  new AppUser
                  {
@@ -36,7 +37,8 @@ namespace NLPC_EPS_server.Identity.Configuration
                      UserName = "employee@localhost.com",
                      NormalizedUserName = "USER@LOCALHOST.COM",
                      PasswordHash = hasher.HashPassword(null, "P@ssword1"),
-                     EmailConfirmed = true
+                     EmailConfirmed = true,
+                     CompanyId = 1,
                  }
             );
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NLPC_EPS_server.Application.Contracts.Identity;
 using NLPC_EPS_server.DAL;
 using NLPC_EPS_server.Persistence.DataAccess;
 using Shouldly;
@@ -13,13 +14,15 @@ namespace NLPC_EPS_server.IntegrationTest
     public class BenefitRequestDBContextTest
     {
         private EPSDatabaseContext _context;
+        private readonly IEmployeeProfileService _employeeProfileService;
 
-        public BenefitRequestDBContextTest()
+        public BenefitRequestDBContextTest(IEmployeeProfileService employeeProfileService)
         {
             var dbOptions = new DbContextOptionsBuilder<EPSDatabaseContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+            _employeeProfileService = employeeProfileService;
 
-            _context = new EPSDatabaseContext(dbOptions);
+            _context = new EPSDatabaseContext(dbOptions, _employeeProfileService);
         }
 
 
@@ -35,7 +38,6 @@ namespace NLPC_EPS_server.IntegrationTest
                 DateDispatched = DateTime.Now,
                 DispatchedAmount = 300000,
                 EmployeeComment = "Just Testing",
-                EmployeeProfileId = 1,
                 MemberProfileId = 1,
                 RequestDescription = "Just Testing",
                 RequestedAmount = 500000
@@ -60,7 +62,6 @@ namespace NLPC_EPS_server.IntegrationTest
                 DateDispatched = DateTime.Now,
                 DispatchedAmount = 300000,
                 EmployeeComment = "Just Testing",
-                EmployeeProfileId = 1,
                 MemberProfileId = 1,
                 RequestDescription = "Just Testing",
                 RequestedAmount = 500000

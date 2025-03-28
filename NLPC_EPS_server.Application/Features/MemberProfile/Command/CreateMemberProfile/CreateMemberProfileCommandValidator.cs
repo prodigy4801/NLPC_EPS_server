@@ -12,16 +12,11 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.CreateMembe
     public class CreateMemberProfileCommandValidator : AbstractValidator<CreateMemberProfileCommand>
     {
         private readonly IMemberProfileRepository _memberProfileRepository;
-        private readonly IEmployeeProfileRepository _employeeProfileRepository;
 
         public CreateMemberProfileCommandValidator(
-            IMemberProfileRepository memberProfileRepository,
-            IEmployeeProfileRepository employeeProfileRepository
+            IMemberProfileRepository memberProfileRepository
         )
         {
-            RuleFor(p => p.EmployeeProfileId)
-                .MustAsync(EmployeeProfileMustExist).WithMessage("{PropertyName} does not exist");
-
             RuleFor(p => p.FullName)
                 .NotEmpty().WithMessage("{PropertyName} is required")
                 .NotNull().WithMessage("{PropertyName} cannot be null or empty")
@@ -41,20 +36,14 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.CreateMembe
                 .MinimumLength(10).WithMessage("{PropertyName} is below number of allowed characters");
 
             RuleFor(p => p.DateOfBirth)
-                .Must(ValidateAge).WithMessage("");
+                .Must(ValidateAge).WithMessage("{PropertyName} inputted cannot be registered.");
 
             _memberProfileRepository = memberProfileRepository;
-            _employeeProfileRepository = employeeProfileRepository;
         }
 
         private async Task<bool> MemberProfileMustExist(int id, CancellationToken token)
         {
             return await _memberProfileRepository.Exist(id);
-        }
-
-        private async Task<bool> EmployeeProfileMustExist(int id, CancellationToken token)
-        {
-            return await _employeeProfileRepository.Exist(id);
         }
 
         private bool ValidateAge(DateTime dateofBirth)

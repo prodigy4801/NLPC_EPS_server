@@ -11,7 +11,6 @@ namespace NLPC_EPS_server.DAL
 {
     public class MemberProfile : BaseEntity
     {
-        public int EmployeeProfileId { get; set; }
         [Required]
         [StringLength(550)]
         public string FullName { get; set; } = string.Empty;
@@ -29,12 +28,5 @@ namespace NLPC_EPS_server.DAL
         public bool ActiveStatus { get; set; }
         public bool DeleteStatus { get; set; }
         public DateTime? DateDeleted { get; set; }
-
-        [ForeignKey(nameof(EmployeeProfileId))]
-        public EmployeeProfile EmployeeProfile { get; set; }
-        [ForeignKey(nameof(CountryId))]
-        public Country Country { get; set; }
-        [ForeignKey(nameof(StateId))]
-        public State State { get; set; }
     }
 }

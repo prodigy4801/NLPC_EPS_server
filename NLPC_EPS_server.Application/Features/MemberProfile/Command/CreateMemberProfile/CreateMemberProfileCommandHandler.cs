@@ -15,22 +15,19 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.CreateMembe
     {
         private readonly IMapper _mapper;
         private readonly IMemberProfileRepository _memberProfileRepository;
-        private readonly IEmployeeProfileRepository _employeeProfileRepository;
 
         public CreateMemberProfileCommandHandler(
             IMapper mapper, 
-            IMemberProfileRepository memberProfileRepository,
-            IEmployeeProfileRepository employeeProfileRepository
+            IMemberProfileRepository memberProfileRepository
         )
         {
             this._mapper = mapper;
             this._memberProfileRepository = memberProfileRepository;
-            this._employeeProfileRepository = employeeProfileRepository;
         }
         public async Task<int> Handle(CreateMemberProfileCommand request, CancellationToken cancellationToken)
         {
             // 1. Validate Incoming Data
-            var validator = new CreateMemberProfileCommandValidator(_memberProfileRepository, _employeeProfileRepository);
+            var validator = new CreateMemberProfileCommandValidator(_memberProfileRepository);
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.Errors.Any()) throw new BadRequestExceptions("Invalid MemberProfile", validationResult);
 

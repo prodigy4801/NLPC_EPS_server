@@ -16,27 +16,23 @@ namespace NLPC_EPS_server.Application.Features.MemberProfile.Command.UpdateMembe
     {
         private readonly IMapper _mapper;
         private readonly IMemberProfileRepository _memberProfileRepository;
-        private readonly IEmployeeProfileRepository _employeeProfileRepository;
         private readonly IAppLogger<UpdateMemberProfileCommandHandler> _logger;
 
         public UpdateMemberProfileCommandHandler(
             IMapper mapper,
             IMemberProfileRepository memberProfileRepository,
-            IAppLogger<UpdateMemberProfileCommandHandler> logger,
-            IEmployeeProfileRepository employeeProfileRepository
+            IAppLogger<UpdateMemberProfileCommandHandler> logger
         )
         {
             this._mapper = mapper;
             this._logger = logger;
             _memberProfileRepository = memberProfileRepository;
-            _employeeProfileRepository = employeeProfileRepository;
         }
         public async Task<Unit> Handle(UpdateMemberProfileCommand request, CancellationToken cancellationToken)
         {
             // 1. Validate Incoming Data
             var validator = new UpdateMemberProfileCommandValidator(
-                _memberProfileRepository, 
-                _employeeProfileRepository
+                _memberProfileRepository
             );
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.Errors.Any())

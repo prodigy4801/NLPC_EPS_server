@@ -19,13 +19,11 @@ namespace NLPC_EPS_server.UnitTest.Features.MemberContribution.Command
         private readonly Mock<IMemberContributionRepository> _mockCategoryRepository;
         private Mock<IMemberContributionRepository> _mockRepo;
         private Mock<IMemberProfileRepository> _mockMemberProfileRepo;
-        private Mock<IEmployeeProfileRepository> _mockEmployeeProfileRepo;
         private Mock<IContributionTypeRepository> _mockContributionTypeRepo;
 
         public CreateMemberContributionCommandTests()
         {
             _mockRepo = MockMemberContributionRepository.GetMockMemberContribution();
-            _mockEmployeeProfileRepo = MockEmployeeProfileRepository.GetMockEmployeeProfile();
             _mockContributionTypeRepo = MockContributionTypeRepository.GetMockContributionType();
             _mockMemberProfileRepo = MockMemberProfileRepository.GetMockMemberProfile();
 
@@ -40,14 +38,13 @@ namespace NLPC_EPS_server.UnitTest.Features.MemberContribution.Command
         [Fact]
         public async Task Handle_ValidCategory_AddedToCategoriesRepo()
         {
-            var handler = new CreateMemberContributionCommandHandler(_mapper, _mockRepo.Object, _mockMemberProfileRepo.Object, _mockEmployeeProfileRepo.Object, _mockContributionTypeRepo.Object);
+            var handler = new CreateMemberContributionCommandHandler(_mapper, _mockRepo.Object, _mockMemberProfileRepo.Object, _mockContributionTypeRepo.Object);
 
             await handler.Handle(new CreateMemberContributionCommand()
             {
                 Id = 6,
                 Amount = 50000,
                 ContributionTypeId = 2,
-                EmployeeProfileId = 3,
                 MemberProfileId = 26,
             }, CancellationToken.None);
 

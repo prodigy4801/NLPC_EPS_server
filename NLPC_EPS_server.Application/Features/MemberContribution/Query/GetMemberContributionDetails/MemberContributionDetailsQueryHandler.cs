@@ -3,15 +3,6 @@ using MediatR;
 using NLPC_EPS_server.Application.Contracts.Logging;
 using NLPC_EPS_server.Application.Contracts.Persistence;
 using NLPC_EPS_server.Application.Exceptions;
-using NLPC_EPS_server.Application.Features.ContributionType.Query.GetAllContributionType;
-using NLPC_EPS_server.Application.Features.EmployeeProfile.Query.GetAllEmployeeProfile;
-using NLPC_EPS_server.Application.Features.MemberContribution.Query.GetMemberContributionDetails;
-using NLPC_EPS_server.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLPC_EPS_server.Application.Features.MemberContribution.Query.GetMemberContributionDetails
 {

@@ -22,7 +22,6 @@ namespace NLPC_EPS_server.UnitTest.Mocks
                       DateDispatched = DateTime.Now,
                       DispatchedAmount = 300000,
                       EmployeeComment = "Just Testing",
-                      EmployeeProfileId = 1,
                       MemberProfileId = 1,
                       RequestDescription = "Just Testing",
                       RequestedAmount = 500000
@@ -34,7 +33,6 @@ namespace NLPC_EPS_server.UnitTest.Mocks
                       DateDispatched = DateTime.Now,
                       DispatchedAmount = 300000,
                       EmployeeComment = "Just Testing",
-                      EmployeeProfileId = 5,
                       MemberProfileId = 3,
                       RequestDescription = "Just Testing",
                       RequestedAmount = 500000
